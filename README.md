@@ -3,7 +3,7 @@
 2. Smitkumar Khokhariya : https://github.com/smit-sk/
 3. Dhruv Sagpariya : https://github.com/DhruvLearner 
 
-# App Name: H20helper
+# App Name: H2Ohelper
 
 # Descriptions
 "H2OHelper" is your ultimate hydration companion, designed to help you effortlessly maintain your daily water intake goals. This feature-rich mobile app offers a seamless experience for users of all backgrounds. Stay on track with your hydration goals by logging your daily water consumption with precision.
