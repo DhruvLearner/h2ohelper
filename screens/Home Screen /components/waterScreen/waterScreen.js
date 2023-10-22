@@ -2,14 +2,12 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { styles } from './style'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { FontAwesome } from '@expo/vector-icons';
-
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function WaterScreen() {
   const dailyWaterIntake = useSelector((state) => state.dailyWaterGoal.dailyWaterIntake);
   const dailyWaterPer = useSelector((state) => state.dailyWaterGoal.drunkWaterPer);
-  const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
+  const dailyWaterGoal = typeof useSelector((state) => state.dailyWaterGoal.dailyWaterGoal) == "string" ? 0 : useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
   const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
 
   return (
@@ -19,7 +17,7 @@ export default function WaterScreen() {
         <AnimatedCircularProgress
           size={120}
           width={15}
-          fill={dailyWaterPer}
+          fill={ dailyWaterGoal}
           tintColor="#00e0ff"
           onAnimationComplete={() => console.log('onAnimationComplete')}
           backgroundColor="#3d5875"
