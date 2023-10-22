@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         padding: 20,
       },
       shawdow: {
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
           height: 0,
         },
         shadowOpacity: 1,
-        shadowRadius: 5,
+        shadowRadius: 5
       },
       button: {
         flex: 1,
