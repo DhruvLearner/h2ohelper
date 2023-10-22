@@ -15,6 +15,8 @@ import HomeScreen from '../Home Screen /home_screen';
 import RBSheet from "react-native-raw-bottom-sheet";
 import WaterLogSheet from "./waterLog/WaterLog";
 import WaterLogSheetContainer from "./waterLog/WaterLog";
+import { useSelector } from 'react-redux';
+import { Alert } from "react-native";
 
 
 const Screen1 = () => {
@@ -27,6 +29,10 @@ const Screen2 = () => {
 
 
 export default function NavigationDashboard() {
+
+  const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
+
+
   const _renderIcon = (routeName, selectedTab) => {
     let icon = '';
 
@@ -83,7 +89,14 @@ export default function NavigationDashboard() {
           <Animated.View style={styles.btnCircleUp}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => refRBSheet.current.open()}
+              onPress={() => { 
+
+                dailyWaterGoal == 0 ? 
+                setDailyGoalAlert() :
+                refRBSheet.current.open()
+
+                
+                }}
             >
               <Image
                 source={require('../../assets/waterdrop.png')}
@@ -134,4 +147,32 @@ export default function NavigationDashboard() {
       </RBSheet>
     </NavigationContainer>
   );
+}
+
+const setDailyGoalAlert=()=>{
+
+  Alert.alert(
+    'Set your goal first',       // Title of the alert
+    'You can not add water without setting your daily goal', // Message content of the alert
+    [
+      // {
+      //   text: 'Cancel',    // Button 1 text
+      //   onPress: () => {
+      //     // Action to take when Button 1 is pressed (e.g., cancel action)
+      //   },
+      //   style: 'cancel'     // 'cancel' style is used for the button that cancels the alert
+      // },
+      {
+        text: 'OK',      
+        onPress: () => {
+          
+        }
+      }
+     
+    ],
+    
+    { cancelable: false,
+     } 
+  );
+
 }

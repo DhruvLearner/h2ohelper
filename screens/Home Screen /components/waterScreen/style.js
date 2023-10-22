@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../../../colors";
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor:'#4fb3ff',
+        backgroundColor:Colors.primaryColor,
         minHeight: 350,
         borderBottomLeftRadius: '25%',
         borderBottomRightRadius: '25%',
@@ -16,12 +17,14 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 25,
         textAlign: "center",
-        marginBottom: 20
+        marginBottom: 20,
+        fontFamily:'Poppins-SemiBold',
     },
     progressText:{
         color: "#FFFFFF",
         fontWeight: "bold",
-        fontSize: 20
+        fontSize: 20,
+        fontFamily:'Poppins-Bold',
     },
     visualContainer:{
         display: 'flex',
@@ -32,6 +35,7 @@ export const styles = StyleSheet.create({
        color: '#FFFFFF',
        fontSize: 20,
        fontWeight: 'bold',
-       marginLeft: 20
+       marginLeft: 20,
+       fontFamily:'Poppins-SemiBold',
     }
   });

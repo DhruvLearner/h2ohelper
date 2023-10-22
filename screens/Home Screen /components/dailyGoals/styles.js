@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../../../colors";
 
 export const styles = StyleSheet.create({
     mainContainer: {
@@ -15,30 +16,35 @@ export const styles = StyleSheet.create({
     },
     headerText:{
         fontSize:16,
-        fontWeight:'bold'
+        fontFamily:'Poppins-Bold',
     },
     editText: {
         color: 'blue', 
         fontSize: 14, 
-        fontWeight: 'bold',
+        fontFamily:'Poppins-SemiBold',
       },
     container: {
         minHeight: 100,
-        backgroundColor: 'darkblue',
+        backgroundColor: Colors.secondaryColor,
         borderRadius: 10,
         paddingHorizontal: 15,
         paddingVertical: 10
     },
     goalText:{
         fontSize: 30,
-        fontWeight: 'bold',
+        fontFamily:'Poppins-SemiBold',
+        color: '#FFFFFF'
+    },
+    setGoalMsgText:{
+        fontSize: 24,
+        fontFamily:'Poppins-SemiBold',
         color: '#FFFFFF'
     },
     editText2:{
         color: '#FFFFFF',
-        fontSize: 14, 
-        fontWeight: 'bold',
-        padding: 4,
+        fontSize: 13, 
+        fontFamily:'Poppins-SemiBold',
+        padding: 3,
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
         width: 60,
         textAlign: 'center',
