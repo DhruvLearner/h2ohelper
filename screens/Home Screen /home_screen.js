@@ -6,6 +6,7 @@ import EditDailyGoals from './components/dailyGoals/editDailyGoals'
 import { useSelector, useDispatch } from 'react-redux';
 import RetrieveData from '../../database/localstorage'
 import { updateWaterData } from '../../Redux/slice/water_amount_slice'
+import HistoryWaterLog from './components/historyWaterLog/history_water_log'
 export default function HomeScreen() {
 
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
@@ -25,7 +26,8 @@ export default function HomeScreen() {
         <ScrollView style={{ flex: 1 }}>
             <WaterScreen dailyGoal={dailyWaterGoal}></WaterScreen>
             <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit}></EditDailyGoals>
-        </ScrollView>
+            <HistoryWaterLog></HistoryWaterLog>
+          </ScrollView>
       </View>
   )
 }
