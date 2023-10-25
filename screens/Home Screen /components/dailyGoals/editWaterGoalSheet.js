@@ -5,7 +5,7 @@ import { updateDailyGoal, updateWaterUnit } from '../../../../Redux/slice/water_
 import Colors from '../../../../colors';
 
 export default function EditWaterGoalSheet(props) {
-  const [selectedUnit, setSelectedUnit] = useState('ml');
+  const selectedUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
   const [number, setNumber] = useState('');
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
   const handleNumberChange = (text) => {
@@ -56,15 +56,15 @@ export default function EditWaterGoalSheet(props) {
           >
             <Text style={styles.mlBtnText}>ml</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={[
               styles.literBtnStyle,
-              selectedUnit === 'liter' && styles.selectedUnitButton,
+              selectedUnit === 'liter' ,
             ]}
             onPress={() => handleUnitChange('liter')}
           >
             <Text style={styles.literBtnText}>liter</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         {/* <Switch
           value={selectedUnit === 'liter'}

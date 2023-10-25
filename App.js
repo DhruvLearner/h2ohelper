@@ -11,7 +11,6 @@ export default function App() {
     'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
     'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
   });
-  console.log(fontsLoaded, "fontsLoaded")
 
   return (
     <Provider store={store}>
