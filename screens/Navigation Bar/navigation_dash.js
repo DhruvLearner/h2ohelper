@@ -126,21 +126,23 @@ export default function NavigationDashboard() {
       <RBSheet
         ref={refRBSheet}
         closeOnDragDown={true}
-        closeOnPressMask={false}
+        closeOnPressMask={true}
        
         customStyles={{
           container: {
             borderRadius:12,
+            height:350,
           },
           wrapper: {
-            shadowColor: "#000",
+            shadowColor: "black",
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.2,
             shadowRadius: 3,
           },
           draggableIcon: {
             backgroundColor: "black"
-          }
+          },
+          
         }}
       >
        <WaterLogSheetContainer listenEvent={updateBottomSheetState}></WaterLogSheetContainer>

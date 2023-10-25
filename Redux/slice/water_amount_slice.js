@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { _updateDailyGoalStorage, _updateDailyWaterIntakeStorage, _updateWaterUnitStorage } from "../../database/localstorage";
+import { _updateDailyGoalStorage, _updateDailyWaterIntakeStorage, _updateWaterUnitStorage  } from "../../database/localstorage";
 
 var tempDailyGoal = 0;
 var tempDailyWaterIntake = 0;
@@ -32,20 +32,28 @@ const dailyWaterGoalSlice = createSlice({
         addWater:(state,action)=>{
             
             // Update water intake
-            state.dailyWaterIntake += parseFloat(action.payload);
-
+            state.dailyWaterIntake = parseFloat(state.dailyWaterIntake) + parseFloat(action.payload);
+            console.log(action.payload,"Payload")
             //Update percentage of daily water
             state.drunkWaterPer=_updateWaterPercentage(state.dailyWaterIntake,state.dailyWaterGoal);
 
             _updateDailyWaterIntakeStorage(state.dailyWaterIntake);
-        }
+        },
+
+        updateWaterUnit: (state, action) => {
+            state.waterUnit = action.payload;
+            _updateWaterUnitStorage(state.waterUnit); // Update in local storage
+          },
+        
         
     }
 });
 
+
+
 const _updateWaterPercentage=(dailyWaterIntake,dailyWaterGoal)=>{
-    return dailyWaterGoal == 0 ? 0 : ((dailyWaterIntake/dailyWaterGoal)*100).toFixed(2);
+    return dailyWaterGoal == 0 ? 0 : ((dailyWaterIntake/dailyWaterGoal)*100).toFixed(0);
 }
 
-export const { addWater, updateDailyGoal, updateWaterData } = dailyWaterGoalSlice.actions;
+export const { addWater, updateDailyGoal, updateWaterData, updateWaterUnit } = dailyWaterGoalSlice.actions;
 export default dailyWaterGoalSlice.reducer;

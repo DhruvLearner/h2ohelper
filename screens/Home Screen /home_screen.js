@@ -7,10 +7,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import RetrieveData from '../../database/localstorage'
 import { updateWaterData } from '../../Redux/slice/water_amount_slice'
 import HistoryWaterLog from './components/historyWaterLog/history_water_log'
+
+
 export default function HomeScreen() {
 
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
   const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function HomeScreen() {
             <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit}></EditDailyGoals>
             <HistoryWaterLog></HistoryWaterLog>
           </ScrollView>
+        
       </View>
   )
 }

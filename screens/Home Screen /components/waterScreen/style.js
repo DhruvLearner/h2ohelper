@@ -3,7 +3,7 @@ import Colors from "../../../../colors";
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor:Colors.primaryColor,
+        backgroundColor: Colors.primaryColor,
         minHeight: 350,
         borderBottomLeftRadius: '25%',
         borderBottomRightRadius: '25%',
@@ -18,24 +18,36 @@ export const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: "center",
         marginBottom: 20,
-        fontFamily:'Poppins-SemiBold',
+        fontFamily: 'Poppins-SemiBold',
     },
-    progressText:{
+    progressText: {
         color: "#FFFFFF",
         fontWeight: "bold",
         fontSize: 20,
-        fontFamily:'Poppins-Bold',
+        fontFamily: 'Poppins-Bold',
     },
-    visualContainer:{
+    visualContainer: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
     },
     waterProgressText: {
-       color: '#FFFFFF',
-       fontSize: 20,
-       fontWeight: 'bold',
-       marginLeft: 20,
-       fontFamily:'Poppins-SemiBold',
+        color: '#FFFFFF',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 20,
+        fontFamily: 'Poppins-SemiBold',
+    },
+    
+    lottie: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1000,
+        height:"100%",
+        width:'100%',
+        pointerEvents: 'none',
     }
-  });
+});
