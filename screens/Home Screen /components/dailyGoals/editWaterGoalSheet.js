@@ -7,7 +7,9 @@ import Colors from '../../../../colors';
 export default function EditWaterGoalSheet(props) {
   const selectedUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
   const [number, setNumber] = useState('');
+  const [error, setError] = useState('');
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
+  
   const handleNumberChange = (text) => {
     if (/^\d+$/.test(text) || text === '') {
       setNumber(text);
@@ -19,14 +21,18 @@ export default function EditWaterGoalSheet(props) {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(updateDailyGoal(number));
-    props.listenEvent('close');
+    if (number === '') {
+      setError('Please enter a value'); // Set the error message
+    } else {
+      dispatch(updateDailyGoal(number));
+      props.listenEvent('close');
+    }
+   
   }
 
-  const handleUnitChange = (value) => {
-    setSelectedUnit(value);
-    dispatch(updateWaterUnit(value));
-  };
+  const handleUnitChange =  (value) => {
+     dispatch(updateWaterUnit(value));
+    };
 
   useEffect(() => {
     setNumber(dailyWaterGoal.toString());
@@ -39,13 +45,20 @@ export default function EditWaterGoalSheet(props) {
         {selectedUnit === 'ml' ? 'Amount (ml): ' : 'Amount (liter): '}
       </Text>
       <View style={styles.inputContainer}>
+       <View style={{display:'flex', flexDirection:'column'}}>
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            error && { borderColor: 'red' }
+          ]}
           onChangeText={handleNumberChange}
           value={number}
           keyboardType='number-pad'
           placeholder="Enter amount"
         />
+        {error && <Text style={styles.errorText}>{error}</Text>} 
+        </View>
+        <View style={{display:'flex', flexDirection:'column'}}>
         <View style={styles.switchMainCon}>
           <TouchableOpacity
             style={[
@@ -54,22 +67,20 @@ export default function EditWaterGoalSheet(props) {
             ]}
             onPress={() => handleUnitChange('ml')}
           >
-            <Text style={styles.mlBtnText}>ml</Text>
+            <Text style={selectedUnit == 'ml' ? styles.selectedBtnText : styles.mlBtnText}>ml</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={[
               styles.literBtnStyle,
-              selectedUnit === 'liter' ,
+              selectedUnit === 'liter' && styles.selectedUnitButton ,
             ]}
             onPress={() => handleUnitChange('liter')}
           >
-            <Text style={styles.literBtnText}>liter</Text>
-          </TouchableOpacity> */}
+            <Text style={  selectedUnit == 'liter' ? styles.selectedBtnText : styles.literBtnText}>liter</Text>
+          </TouchableOpacity>
         </View>
-        {/* <Switch
-          value={selectedUnit === 'liter'}
-          onValueChange={(value) => handleUnitChange(value ? 'liter' : 'ml')}
-        /> */}
+        {error && <Text></Text>} 
+        </View>
       </View>
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Submit</Text>
@@ -94,6 +105,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
+    alignContent:'flex-start',
+    
   },
   input: {
     width: 150,
@@ -110,7 +123,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mlBtnStyle: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: 'white',
     padding: 8,
     borderRadius: 4,
     marginRight: 10,
@@ -123,13 +136,21 @@ const styles = StyleSheet.create({
   selectedUnitButton: {
     backgroundColor: Colors.primaryColor,
   },
+  selectedBtnText: {
+    color: '#ffffff',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+  },
+  errorText:{
+    color:'red',
+    marginHorizontal:10,
+    padding:0
+  },
   mlBtnText: {
-    color: 'white',
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
   },
   literBtnText: {
-    color: 'black',
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
   },
@@ -143,9 +164,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   submitButton: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.secondaryColor,
     borderRadius: 8,
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 40,
     color: '#FFFFFF',
   },
   buttonText: {
