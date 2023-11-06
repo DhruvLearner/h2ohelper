@@ -6,14 +6,13 @@ import { addWater } from '../../../Redux/slice/water_amount_slice';
 
 const mlValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200];
 
-
-
 export default function WaterLogSheetContainer(props) {
   const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
   const dispatch = useDispatch();
 
   const [selectedValue, setSelectedValue] = useState(null);
 
+  
   const _waterLog = (mlValue) => {
     setSelectedValue(mlValue);
   }

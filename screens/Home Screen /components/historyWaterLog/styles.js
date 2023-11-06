@@ -2,9 +2,13 @@ import { StyleSheet } from "react-native";
 import Colors from "../../../../colors";
 
 export const styles = StyleSheet.create({
-    mainContainer:{
-        marginVertical:10,
-    },
+  containerA:{
+    marginVertical:10,
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignSelf:'center'
+  }, 
     container: {
         display:'flex',
         flexDirection:'column', 
@@ -28,7 +32,6 @@ export const styles = StyleSheet.create({
       },
       item_container:{
         borderRadius:8,
-        flex:1,
         backgroundColor: Colors.primaryColor,
         marginHorizontal: 6,
       },

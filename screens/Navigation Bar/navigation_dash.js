@@ -13,10 +13,10 @@ import { styles } from './styles';
 import { Image } from 'react-native';
 import HomeScreen from '../Home Screen /home_screen';
 import RBSheet from "react-native-raw-bottom-sheet";
-import WaterLogSheet from "./waterLog/WaterLog";
-import WaterLogSheetContainer from "./waterLog/WaterLog";
+import WaterLogSheetContainer from "./waterLog/WaterLogSheet";
 import { useSelector } from 'react-redux';
 import { Alert } from "react-native";
+import SettingScreen from "../Setting Screen/setting_screen";
 
 
 const Screen1 = () => {
@@ -24,7 +24,7 @@ const Screen1 = () => {
 };
 
 const Screen2 = () => {
-  return <View style={styles.screen2} />;
+  return <SettingScreen></SettingScreen>;
 };
 
 
@@ -154,7 +154,7 @@ export default function NavigationDashboard() {
 const setDailyGoalAlert=()=>{
 
   Alert.alert(
-    'Set your goal first',       // Title of the alert
+    'Set your goal first',       
     'You can not add water without setting your daily goal', // Message content of the alert
     [
       // {

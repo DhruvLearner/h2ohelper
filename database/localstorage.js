@@ -13,7 +13,6 @@ const storeData = async () => {
   
 export const _updateDailyGoalStorage=async (dailyGoal)=>{
     try {
-        console.log(dailyGoal,'dailyGoaldailyGoal')
         await AsyncStorage.setItem('dailyGoal', dailyGoal.toString());
     } catch (error) {
         console.error('Error storing data for dailyGoal: ' + error);
@@ -34,18 +33,30 @@ export const _updateWaterUnitStorage=async (waterUnit)=>{
     } catch (error) {
         console.error('Error storing data for waterUnit: ' + error);
     }
-}  
+} 
+
+export const _updateWaterlogHistoryStorage=async (water)=>{
+    try {
+        await AsyncStorage.setItem('waterlogHistory', water.toString());
+    } catch (error) {
+        console.error('Error storing data for waterlogHistory: ' + error);
+    }
+} 
+
 export default async function RetrieveData() {
     try {
         const dailyGoal = await AsyncStorage.getItem('dailyGoal');
         const dailyWaterIntake = await AsyncStorage.getItem('dailyWaterIntake');
         const waterUnit = await AsyncStorage.getItem('waterUnit');
+        const waterlogHistory = await AsyncStorage.getItem('waterlogHistory');
+        console.log(typeof waterlogHistory, "WATERLOGHIS",waterlogHistory )
 
-        if (dailyGoal || dailyWaterIntake ||  waterUnit) {
+        if (dailyGoal || dailyWaterIntake ||  waterUnit || waterlogHistory) {
             const retrievedData = {
                 tempDailyGoal: dailyGoal||0,
                 tempDailyWaterIntake: dailyWaterIntake||0,
-                tempWaterUnit: waterUnit||'ml'
+                tempWaterUnit: waterUnit||'ml',
+                waterlogHistory: waterlogHistory  ? JSON.parse(waterlogHistory) : {} 
             };
             return retrievedData;
         } else {
@@ -58,3 +69,19 @@ export default async function RetrieveData() {
     }
 }
 
+export async function RetrieveWaterLogHistory() {
+    try {
+        const waterlogHistory = await AsyncStorage.getItem('waterlogHistory');
+        
+        if (waterlogHistory) {
+            console.log(waterlogHistory,'waterlogHistory')
+            return waterlogHistory || null;
+        } else {
+            console.log('No data found for one or more keys.');
+            return null; // Return null or an appropriate value if no data is found
+        }
+    } catch (error) {
+        console.error('Error retrieving data: ' + error);
+        return null; // Handle the error and return an appropriate value
+    }
+}

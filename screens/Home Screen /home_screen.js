@@ -8,22 +8,21 @@ import RetrieveData from '../../database/localstorage'
 import { updateWaterData } from '../../Redux/slice/water_amount_slice'
 import HistoryWaterLog from './components/historyWaterLog/history_water_log'
 
-
 export default function HomeScreen() {
 
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
   const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
-
+  const dailyWaterIntake = useSelector((state) => state.dailyWaterGoal.dailyWaterIntake);
 
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       const data = await RetrieveData();
-      console.log(data,'data')
+      // console.log(data,'data')
       data && dispatch(updateWaterData(data))
     };
     fetchData();
-  }, []);
+  }, [dailyWaterIntake]);
   return (
       <View style={styles.container}>
         <ScrollView style={{ flex: 1 }}>
@@ -31,7 +30,6 @@ export default function HomeScreen() {
             <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit}></EditDailyGoals>
             <HistoryWaterLog></HistoryWaterLog>
           </ScrollView>
-        
       </View>
   )
 }

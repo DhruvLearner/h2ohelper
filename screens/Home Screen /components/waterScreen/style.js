@@ -5,8 +5,8 @@ export const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.primaryColor,
         minHeight: 350,
-        borderBottomLeftRadius: '25%',
-        borderBottomRightRadius: '25%',
+        borderBottomLeftRadius: 25,
+        borderBottomRightRadius: 25,
         display: "flex",
         flexDirection: 'column',
         justifyContent: 'center',
