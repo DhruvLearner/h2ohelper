@@ -1,38 +1,67 @@
-import { View, Text, Switch, Platform } from 'react-native'
+import { View, Text, Switch, Platform, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import style from './styles'
 import * as Notifications from 'expo-notifications';
 import { useEffect, useState } from 'react';
 import Colors from '../colors';
-
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setNotificationPreference, setNotificationTime } from '../Redux/slice/setting_slice';
 
 
 export default function LocalNotification() {
-
-    const [allowNotification, setAllowNotification] = useState(false)
+    const notificationPreference = useSelector((state)=>state.setting.notificationPreference); 
 
     const [schedule, setSchedule] = useState([])
+    const [error, setError] = useState('');
+    const [number, setNumber] = useState('');
+
+
+    const defaultNotificationTime = useSelector((state)=>state.setting.notificationTime)
+   
+    const dispatch = useDispatch();
+
+    const handleNumberChange = (text) => {
+        console.log(text)
+        setNumber(text)
+    }
+    useEffect(()=>{
+        setNumber(defaultNotificationTime.toString())
+        console.log("Stored Notification Time ==> ",defaultNotificationTime )
+    },[defaultNotificationTime])
+
+    const handleSaveBtn = ()=>{
+        if (number === '') {
+            setError('   Please enter a value'); 
+          } else if (!/^\d+$/.test(number)) {
+            setError('Please enter a valid integer value'); 
+          } else {
+            setError();
+            dispatch(setNotificationTime(number));
+          }
+    }
 
     const changeNotificationPreference = async () => {
-        if (allowNotification) {
+        if (notificationPreference) {
             console.log("not scheduled")
             const cancelled = await cancelReminder();
             if (cancelled) {
-                setAllowNotification(false)
+                dispatch(setNotificationPreference())
                 setSchedule(await getSchedule());
             }
 
         } else {
             console.log("scheduled")
-            const scheduled = await scheduleReminder();
+            const scheduled = await scheduleReminder(defaultNotificationTime);
             if (scheduled) {
-                setAllowNotification(true)
+                dispatch(setNotificationPreference())
                 setSchedule(await getSchedule());
             }
         }
 
 
     }
+
 
     //   console.log("Notification : ", Notifications);
 
@@ -50,12 +79,11 @@ export default function LocalNotification() {
 
     }, []);
 
-
     return (
         <View style={style.maincontainer}>
             <Text style={style.headingStyle}>Notification : </Text>
             <View style={style.container}>
-                <Switch value={allowNotification} onChange={changeNotificationPreference}
+                <Switch value={notificationPreference} onChange={changeNotificationPreference}
                     trackColor={{ false: '#daecec', true: Colors.primaryColor }}
                     ios_backgroundColor="#daecec" />
                 <Text> Set Daily Reminder </Text>
@@ -72,13 +100,37 @@ export default function LocalNotification() {
                     ))
                 }
             </View>
+            {notificationPreference &&
+            <View style={style.customNotificationView}>
+                <View style={style.textInputView}>
+                    <TextInput
+                        style={[
+                            style.input,
+                            error && { borderColor: 'red' }
+                        ]}
+                        onChangeText={handleNumberChange}
+                        value={number}
+                        keyboardType='number-pad'
+                        placeholder="Enter Minutes"
+                    />
+                    {error && <Text style={style.errorText}>{error}</Text>}
+                </View>
+              
+                <TouchableOpacity
+                style={style.saveBtn}
+                    onPress={() => handleSaveBtn()}
+                >
+                    <Text style={style.saveText}>Save</Text>
+                </TouchableOpacity>
+               
+            </View>
+            }
         </View>
     );
 }
 
-async function scheduleReminder() {
+async function scheduleReminder(notificationTime) {
     console.log('Schedule for ', Platform.OS)
-
     try {
         const permission = await Notifications.getPermissionsAsync();
         console.log('Permission : ', permission)
@@ -109,11 +161,11 @@ async function scheduleReminder() {
                     userName: 'Smitkumar',
                     type: 'reminder'
                 },
-                imageUrl: require('../assets/waterdrop.png')
+                imageUrl: './assets/waterdrop.png'
 
             },
             trigger: {
-                seconds: 60,
+                seconds:  (parseInt(notificationTime) * 60),
                 repeats: true,
 
             }
