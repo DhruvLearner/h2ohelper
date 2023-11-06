@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
         overflow: "hidden"
     },
     editBtn: {
-        borderRadius: "100%"
+        borderRadius: 100
     }
 
 });
