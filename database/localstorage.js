@@ -41,7 +41,22 @@ export const _updateWaterlogHistoryStorage=async (water)=>{
     } catch (error) {
         console.error('Error storing data for waterlogHistory: ' + error);
     }
+}
+export const _updateNotificationPreference=async (preference)=>{
+    try {
+        await AsyncStorage.setItem('notificationPreference', preference.toString());
+    } catch (error) {
+        console.error('Error storing data for notificationPreference: ' + error);
+    }
 } 
+export const _updateNotificationTime=async (time)=>{
+    try {
+        await AsyncStorage.setItem('notificationTime', time.toString());
+    } catch (error) {
+        console.error('Error storing data for notificationTime: ' + error);
+    }       
+} 
+
 
 export default async function RetrieveData() {
     try {

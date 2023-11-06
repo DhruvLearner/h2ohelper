@@ -6,7 +6,6 @@ import LocalNotification from '../../components/notification'
 export default function SettingScreen() {
   return (
     <View style={styles.container}>
-      
       <LocalNotification></LocalNotification>
     </View>
   )

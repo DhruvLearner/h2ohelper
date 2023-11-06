@@ -1,10 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   Animated,
   TouchableOpacity,
-  View,
-  Button,
-  Text
 } from 'react-native';
 import { CurvedBottomBarExpo } from 'react-native-curved-bottom-bar';
 import Ionicons from '@expo/vector-icons/Ionicons';
