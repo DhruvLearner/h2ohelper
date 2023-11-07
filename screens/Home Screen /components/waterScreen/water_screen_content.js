@@ -39,7 +39,7 @@ export default function WaterScreenContent() {
         {dailyWaterPer >= 100 ? triggerConfetti() : null}
         <LottieView
           ref={confettiRef}
-          source={require('/Users/smitkhokhariya/Fanshawe/SEM3/Capstone/h2ohelper/assets/confetti.json')}
+          source={require('../../../../assets/confetti.json')}
           autoPlay={false}
           loop={false}
           style={styles.lottie}

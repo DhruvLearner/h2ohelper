@@ -88,18 +88,6 @@ export default function LocalNotification() {
                     ios_backgroundColor="#daecec" />
                 <Text> Set Daily Reminder </Text>
             </View>
-            <View>
-                <Text>
-                    Scheduled Notification : {schedule.length}
-                </Text>
-                {
-                    schedule.map((item, index) => (
-                        <Text key={index} >
-                            {item.type} : {item.id}
-                        </Text>
-                    ))
-                }
-            </View>
             {notificationPreference &&
             <View style={style.customNotificationView}>
                 <View style={style.textInputView}>
@@ -171,7 +159,6 @@ async function scheduleReminder(notificationTime) {
             }
         })
 
-        console.log('Schedule Id: ', id)
         if (!id) {
             return false;
         }
@@ -214,6 +201,6 @@ async function getSchedule() {
             id: scheduleNotification.identifier,
             type: scheduleNotification.content.data.type
         })
-    });
+    }); 
     return schedule;
 }
