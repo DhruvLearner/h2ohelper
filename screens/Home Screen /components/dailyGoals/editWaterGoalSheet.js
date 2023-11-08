@@ -38,7 +38,7 @@ export default function EditWaterGoalSheet(props) {
   useEffect(() => {
   }, [selectedUnit]);
 
-  useEffect(() => {
+  useEffect(() => { 
     setNumber(dailyWaterGoal.toString());
   }, [dailyWaterGoal]);
 
