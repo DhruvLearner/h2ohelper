@@ -5,7 +5,6 @@ const storeData = async () => {
       await AsyncStorage.setItem('dailyGoal', tempDailyGoal.toString());
       await AsyncStorage.setItem('dailyWaterIntake', tempDailyWaterIntake.toString());
       await AsyncStorage.setItem('waterUnit', tempWaterUnit);
-      console.log('Data stored successfully.');
     } catch (error) {
       console.error('Error storing data: ' + error);
     }
@@ -64,7 +63,7 @@ export default async function RetrieveData() {
         const dailyWaterIntake = await AsyncStorage.getItem('dailyWaterIntake');
         const waterUnit = await AsyncStorage.getItem('waterUnit');
         const waterlogHistory = await AsyncStorage.getItem('waterlogHistory');
-        console.log(typeof waterlogHistory, "WATERLOGHIS",waterlogHistory )
+        
 
         if (dailyGoal || dailyWaterIntake ||  waterUnit || waterlogHistory) {
             const retrievedData = {
@@ -75,11 +74,11 @@ export default async function RetrieveData() {
             };
             return retrievedData;
         } else {
-            console.log('No data found for one or more keys.');
+           
             return null; // Return null or an appropriate value if no data is found
         }
     } catch (error) {
-        console.error('Error retrieving data: ' + error);
+       
         return null; // Handle the error and return an appropriate value
     }
 }
@@ -89,10 +88,10 @@ export async function RetrieveWaterLogHistory() {
         const waterlogHistory = await AsyncStorage.getItem('waterlogHistory');
         
         if (waterlogHistory) {
-            console.log(waterlogHistory,'waterlogHistory')
+            
             return waterlogHistory || null;
         } else {
-            console.log('No data found for one or more keys.');
+            
             return null; // Return null or an appropriate value if no data is found
         }
     } catch (error) {

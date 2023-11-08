@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { _updateDailyGoalStorage, _updateDailyWaterIntakeStorage, _updateWaterUnitStorage, _updateWaterlogHistoryStorage } from "../../database/localstorage";
-
+import { _convertedWater } from "../../screens/Home Screen /components/waterScreen/water_screen_content";
 var tempDailyGoal = 0;
 var tempDailyWaterIntake = 0;
 var tempWaterUnit = "ml";
@@ -23,7 +23,8 @@ const dailyWaterGoalSlice = createSlice({
     reducers: {
         updateWaterData: (state, action) => {
             state.dailyWaterGoal = action.payload.tempDailyGoal;
-            state.waterUnit = action.payload.tempWaterUnit;
+            state.waterMainUnit = action.payload.tempWaterUnit;
+            state.waterUnit = 'ml';
             state.dailyWaterIntake = action.payload.tempDailyWaterIntake;
             state.waterlogHistory = action.payload.waterlogHistory;
             state.drunkWaterPer = _updateWaterPercentage(state.dailyWaterIntake, state.dailyWaterGoal)
@@ -61,8 +62,9 @@ const dailyWaterGoalSlice = createSlice({
 
         },
         updateWaterUnit: (state, action) => {
-            state.waterUnit = action.payload;
-            _updateWaterUnitStorage(state.waterUnit); // Update in local storage
+            state.waterMainUnit = action.payload
+            console.log(state.waterMainUnit,'state.waterMainUnit')
+            _updateWaterUnitStorage(state.waterMainUnit); // Update in local storage
         },
     }
 });
@@ -79,7 +81,7 @@ export function formatDateToMMDDYYYY(date) {
 
 const manageWaterLogHistory = (state, waterlog, loggedWater, action) => {
     const currentDate = new Date();
-    console.log(typeof waterlog, "TYPE OF WATERLOG")
+    
     let waterLogHistory =   waterlog || {}
     let formattedCurrentDate = formatDateToMMDDYYYY(currentDate);
     let fetchCurrentDateHistory = waterLogHistory[formattedCurrentDate] || [];
@@ -91,7 +93,7 @@ const manageWaterLogHistory = (state, waterlog, loggedWater, action) => {
         fetchCurrentDateHistory.push(obj);
         waterLogHistory[formattedCurrentDate] = fetchCurrentDateHistory;
     }else{
-        console.log(loggedWater, "AS A TIMESTAMP");
+        
         const updatedCurrentDateHistory = fetchCurrentDateHistory.filter((item) => item.timeStamp != loggedWater);
         waterLogHistory[formattedCurrentDate] = updatedCurrentDateHistory;
     }
@@ -103,6 +105,8 @@ const manageWaterLogHistory = (state, waterlog, loggedWater, action) => {
 }
 
 const _updateWaterPercentage = (dailyWaterIntake, dailyWaterGoal) => {
+    // dailyWaterIntake = _convertedWater(dailyWaterIntake,)
+    // dailyWaterGoal = 
     return dailyWaterGoal == 0 ? 0 : ((dailyWaterIntake / dailyWaterGoal) * 100).toFixed(0);
 }
 

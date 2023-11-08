@@ -22,12 +22,12 @@ export default function LocalNotification() {
     const dispatch = useDispatch();
 
     const handleNumberChange = (text) => {
-        console.log(text)
+        
         setNumber(text)
     }
     useEffect(()=>{
         setNumber(defaultNotificationTime.toString())
-        console.log("Stored Notification Time ==> ",defaultNotificationTime )
+        
     },[defaultNotificationTime])
 
     const handleSaveBtn = ()=>{
@@ -43,7 +43,7 @@ export default function LocalNotification() {
 
     const changeNotificationPreference = async () => {
         if (notificationPreference) {
-            console.log("not scheduled")
+            
             const cancelled = await cancelReminder();
             if (cancelled) {
                 dispatch(setNotificationPreference())
@@ -51,7 +51,7 @@ export default function LocalNotification() {
             }
 
         } else {
-            console.log("scheduled")
+            
             const scheduled = await scheduleReminder(defaultNotificationTime);
             if (scheduled) {
                 dispatch(setNotificationPreference())
@@ -63,12 +63,9 @@ export default function LocalNotification() {
     }
 
 
-    //   console.log("Notification : ", Notifications);
-
     useEffect(() => {
         (async () => {
             const previouslyScheduled = await getSchedule();
-            console.log('Previously Schedule : ', previouslyScheduled)
             setSchedule(previouslyScheduled)
 
             if (previouslyScheduled.find((item) => item.type === 'reminder')) {
@@ -118,10 +115,10 @@ export default function LocalNotification() {
 }
 
 async function scheduleReminder(notificationTime) {
-    console.log('Schedule for ', Platform.OS)
+    
     try {
         const permission = await Notifications.getPermissionsAsync();
-        console.log('Permission : ', permission)
+       
 
         if (!permission.granted) {
             const request = await Notifications.requestPermissionsAsync({
@@ -131,7 +128,7 @@ async function scheduleReminder(notificationTime) {
                     allowBadge: true
                 }
             });
-            console.log("Request : ", request)
+            
             if (!request.granted) {
                 return false;
             }
@@ -167,21 +164,21 @@ async function scheduleReminder(notificationTime) {
 
     }
     catch (error) {
-        console.log("Notification id error , ", error)
+
         return false;
     }
 
 }
 
 async function cancelReminder() {
-    console.log('Cancel for ', Platform.OS)
+    
     let cancelled = false;
     const schedule = await getSchedule();
 
     for (const item of schedule) {
         if (item.type === 'reminder') {
             await Notifications.cancelScheduledNotificationAsync(item.id);
-            console.log('Cancelled : ', item.id)
+            
             cancelled = true
         }
     }
@@ -193,7 +190,7 @@ async function cancelReminder() {
 async function getSchedule() {
 
     const scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
-    console.log('Schedule: ', scheduledNotifications)
+    
 
     const schedule = [];
     scheduledNotifications.forEach((scheduleNotification) => {

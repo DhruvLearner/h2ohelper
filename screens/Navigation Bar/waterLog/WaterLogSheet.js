@@ -52,14 +52,14 @@ export default function WaterLogSheetContainer(props) {
       <TouchableOpacity
         style={[
           styles.submitButton,
-          isSubmitDisabled && styles.disabledSubmitButton // Add a new style for disabled button
+          isSubmitDisabled && styles.disabledSubmitButton
         ]}
         onPress={_addWater}
-        disabled={isSubmitDisabled} // Disable the button if isSubmitDisabled is true
+        disabled={isSubmitDisabled}
       >
         <Text style={[
           styles.buttonText,
-          isSubmitDisabled && styles.disabledButtonText // Add a new style for disabled button text
+          isSubmitDisabled && styles.disabledButtonText
         ]}>Submit</Text>
       </TouchableOpacity>
     </View>

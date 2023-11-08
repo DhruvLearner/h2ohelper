@@ -28,7 +28,9 @@ export default function WaterScreenContent() {
     const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal) == " " ? 0 : useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
     const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
     const motivationalSentence = getMotivationalSentence(dailyWaterPer);
+    const dailyWaterMainUnit = useSelector((state) => state.dailyWaterGoal.waterMainUnit);
   
+    
     const confettiRef = useRef();
     function triggerConfetti() {
       confettiRef.current?.play(0)
@@ -64,9 +66,9 @@ export default function WaterScreenContent() {
           </AnimatedCircularProgress>
           <View style={styles}>
             <Text style={styles.waterProgressText}>
-              {dailyWaterIntake}
-              {dailyWaterUnit} of {dailyWaterGoal}
-              {dailyWaterUnit}
+              {_convertedWater(dailyWaterIntake,dailyWaterMainUnit)} 
+              {dailyWaterMainUnit} of {_convertedWater(dailyWaterGoal,dailyWaterMainUnit)}
+              {dailyWaterMainUnit}
             </Text>
           </View>
         </View>
@@ -74,4 +76,10 @@ export default function WaterScreenContent() {
     );
   }
   
-  
+  export const _convertedWater = (amount , unit = 'ml') => {
+    if (unit == 'liter') {
+      return parseFloat((parseInt(amount) / 1000).toFixed(3));
+    }else{
+      return amount
+    }
+  }

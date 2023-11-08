@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { styles } from './styles';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import EditWaterGoalSheet from './editWaterGoalSheet';
-
+import { _convertedWater } from '../waterScreen/water_screen_content';
 export default function EditDailyGoals(props) {
   const refRBSheet = useRef();
 
@@ -28,8 +28,7 @@ export default function EditDailyGoals(props) {
           <Text style={styles.setGoalMsgText}>Set Your Daily Goal</Text>
         ) : (
           <Text style={styles.goalText}>
-            {props.dailyGoal}
-            {props.dailyWaterUnit}
+            {_convertedWater(props.dailyGoal,props.dailyWaterMainUnit)}{props.dailyWaterMainUnit}
           </Text>
         )}
         <TouchableOpacity style={styles.editBtn} onPress={() => updateBottomSheetState('open')}>

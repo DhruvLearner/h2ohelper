@@ -27,7 +27,7 @@ export default function HistoryWaterLog() {
     let currentDate = formatDateToMMDDYYYY(new Date());
     let currentDateHistory = (waterlogHistory[currentDate] || []).slice().reverse();
     
-    console.log(currentDateHistory, "==currentDateHistory")
+    
 
     function getHourAndMinuteFromDate(date) {
         const hour = date.getHours();
