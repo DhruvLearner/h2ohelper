@@ -3,7 +3,7 @@ import { _updateNotificationPreference, _updateNotificationTime } from "../../da
 
 const initialState = {
     notificationPreference : false,
-    notificationTime : 60
+    notificationTime : 1
 }
 
 const settingSlice = createSlice({

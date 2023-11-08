@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     mlText: {
       color: 'black', 
       textAlign: 'center',
-      fontFamily:'Poppins-Regular',
+      fontFamily:'',
       
     },
     selectedValueContainer: {

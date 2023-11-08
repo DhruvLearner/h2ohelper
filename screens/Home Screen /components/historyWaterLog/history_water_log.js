@@ -43,27 +43,36 @@ export default function HistoryWaterLog() {
                     <Text style={styles.editText}>Edit</Text>
                 </TouchableOpacity>
             </View>
-            <FlatList
-                horizontal
-                data={currentDateHistory}
-                renderItem={({ item }) => (
-                    <View style={styles.containerA}>
-                       
-                            {isEdit && (
-                                <TouchableOpacity style={styles.deleteButton} onPress={()=>dispatch(removeWater(item))}>
-                                    <AntDesign name="minuscircle" size={14} color="white" />
-                                </TouchableOpacity>
-                            )
-                            }
-                            <View style={styles.item_container}>
-                                <Text style={styles.item_style}>{item.loggedWater} {dailyWaterUnit}</Text>
-                            </View>
+            {currentDateHistory && 
+                <FlatList
+                    horizontal
+                    data={currentDateHistory}
+                    renderItem={({ item }) => (
+                        <View style={styles.containerA}>
                         
-                        <Text style={{ textAlign: "center", marginTop: 3 }}>{getHourAndMinuteFromDate(new Date(item.timeStamp))}</Text>
-                    </View>
-                )}
-                showsHorizontalScrollIndicator={false}
-            />
+                                {isEdit && (
+                                    <TouchableOpacity style={styles.deleteButton} onPress={()=>dispatch(removeWater(item))}>
+                                        <AntDesign name="minuscircle" size={14} color="white" />
+                                    </TouchableOpacity>
+                                )
+                                }
+                                <View style={styles.item_container}>
+                                    <Text style={styles.item_style}>{item.loggedWater} {dailyWaterUnit}</Text>
+                                </View>
+                            
+                            <Text style={{ textAlign: "center", marginTop: 3 }}>{getHourAndMinuteFromDate(new Date(item.timeStamp))}</Text>
+                        </View>
+                    )}
+                    showsHorizontalScrollIndicator={false}
+                />
+            }
+            {   Object.keys(currentDateHistory).length === 0 &&
+                <View>
+                    <Text style={{marginTop: 4, fontSize: 18}}>
+                        You didn't logged water
+                    </Text>
+                </View>
+            }
         </View>
     )
 }

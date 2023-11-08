@@ -50,7 +50,6 @@ const style = StyleSheet.create({
       },
       saveText:{
         color:'white',
-        fontFamily:'d',
         fontSize:16
       }
 })
