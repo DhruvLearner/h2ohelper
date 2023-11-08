@@ -50,7 +50,7 @@ const style = StyleSheet.create({
       },
       saveText:{
         color:'white',
-        fontFamily:'Poppins-SemiBold',
+        fontFamily:'d',
         fontSize:16
       }
 })

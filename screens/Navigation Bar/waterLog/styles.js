@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
       margin: 10,
       textAlign: 'center',
       fontWeight: 'bold',
-      fontFamily:'Poppins-SemiBold',
+      fontFamily:'',
       fontSize:18,
       
     },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize: 18,
       marginHorizontal:35,
-      fontFamily:'Poppins-SemiBold',
+      fontFamily:'',
       fontWeight: 'bold',
       textAlign: 'center'
       

@@ -38,7 +38,7 @@ export default function EditWaterGoalSheet(props) {
   useEffect(() => {
   }, [selectedUnit]);
 
-  useEffect(() => {
+  useEffect(() => { 
     setNumber(dailyWaterGoal.toString());
   }, [dailyWaterGoal]);
 
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 20,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: '',
     marginBottom: 20,
   },
   inputContainer: {
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   selectedBtnText: {
     color: '#ffffff',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: '',
     fontSize: 16,
   },
   errorText:{
@@ -151,11 +151,11 @@ const styles = StyleSheet.create({
     padding:0
   },
   mlBtnText: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: '',
     fontSize: 16,
   },
   literBtnText: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: '',
     fontSize: 16,
   },
   input: {
@@ -178,13 +178,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     marginHorizontal: 55,
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: '',
     fontWeight: 'bold',
     textAlign: 'center',
   },
   staticText: {
     fontSize: 16,
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: '',
     color: 'black',
     marginRight: 10,
   },
