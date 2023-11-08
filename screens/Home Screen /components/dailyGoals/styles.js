@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 16,
-        fontFamily: 'Poppins-Bold',
+        fontFamily: '',
     },
     editText: {
         color: 'grey',
         fontSize: 14,
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: '',
 
     },
     container: {
@@ -34,18 +34,18 @@ export const styles = StyleSheet.create({
     },
     goalText: {
         fontSize: 30,
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: '',
         color: '#FFFFFF'
     },
     setGoalMsgText: {
         fontSize: 24,
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: '',
         color: '#FFFFFF'
     },
     editText2: {
         color: '#FFFFFF',
         fontSize: 13,
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: '',
         padding: 3,
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
         width: 60,

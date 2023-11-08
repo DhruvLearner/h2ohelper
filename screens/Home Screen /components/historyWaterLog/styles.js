@@ -23,12 +23,12 @@ export const styles = StyleSheet.create({
     },
     headerText:{
         fontSize:16,
-        fontFamily:'Poppins-Bold',
+        fontFamily:'',
     },
     editText: {
         color: 'blue', 
         fontSize: 14, 
-        fontFamily:'Poppins-SemiBold',
+        fontFamily:'',
       },
       item_container:{
         borderRadius:8,
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
       item_style: {
         padding: 18,
         marginVertical: 8,
-        fontFamily:'Poppins-Bold',
+        fontFamily:'',
         color:'#ffffff'
 
       },

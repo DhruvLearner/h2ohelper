@@ -26,11 +26,11 @@ Notifications.setNotificationHandler({
 
 export default function App() {
 
-  const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
-  }) ;
+  // const [fontsLoaded] = useFonts({
+  //   'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
+  //   '': require('./assets/fonts/.ttf'),
+  //   '': require('./assets/fonts/.ttf'),
+  // }) ;
 
 
   useEffect(() => {

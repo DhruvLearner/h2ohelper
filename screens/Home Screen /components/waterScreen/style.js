@@ -18,13 +18,13 @@ export const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: "center",
         marginBottom: 20,
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: '',
     },
     progressText: {
         color: "#FFFFFF",
         fontWeight: "bold",
         fontSize: 20,
-        fontFamily: 'Poppins-Bold',
+        fontFamily: '',
     },
     visualContainer: {
         display: 'flex',
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 20,
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: '',
     },
     
     lottie: {
