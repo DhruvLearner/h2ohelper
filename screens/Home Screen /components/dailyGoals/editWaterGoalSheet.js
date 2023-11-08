@@ -20,7 +20,7 @@ export default function EditWaterGoalSheet(props) {
   }
 
   const dispatch = useDispatch();
-
+ 
   const handleSubmit = () => {
     if (number === '') {
       setError('Please enter a value'); // Set the error message
