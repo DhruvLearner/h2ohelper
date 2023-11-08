@@ -24,6 +24,7 @@ export const styles = StyleSheet.create({
     headerText:{
         fontSize:16,
         fontFamily:'',
+        fontWeight: "bold"
     },
     editText: {
         color: 'blue', 

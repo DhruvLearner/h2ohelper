@@ -78,7 +78,7 @@ export default function LocalNotification() {
 
     return (
         <View style={style.maincontainer}>
-            <Text style={style.headingStyle}>Notification : </Text>
+            <Text style={style.headingStyle}>Drink Water Notification : </Text>
             <View style={style.container}>
                 <Switch value={notificationPreference} onChange={changeNotificationPreference}
                     trackColor={{ false: '#daecec', true: Colors.primaryColor }}
@@ -118,7 +118,6 @@ async function scheduleReminder(notificationTime) {
     
     try {
         const permission = await Notifications.getPermissionsAsync();
-       
 
         if (!permission.granted) {
             const request = await Notifications.requestPermissionsAsync({
@@ -150,6 +149,7 @@ async function scheduleReminder(notificationTime) {
 
             },
             trigger: {
+                
                 seconds:  (parseInt(notificationTime) * 60),
                 repeats: true,
 
@@ -190,8 +190,6 @@ async function cancelReminder() {
 async function getSchedule() {
 
     const scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
-    
-
     const schedule = [];
     scheduledNotifications.forEach((scheduleNotification) => {
         schedule.push({

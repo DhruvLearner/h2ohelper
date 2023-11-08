@@ -9,21 +9,20 @@ var tempWaterUnit = "ml";
 const initialState = {
     dailyWaterGoal: tempDailyGoal,
     waterUnit: tempWaterUnit,
+    waterMainUnit: tempWaterUnit,
     dailyWaterIntake: tempDailyWaterIntake,
     drunkWaterPer: tempDailyGoal == 0 ? 0 : ((tempDailyWaterIntake / tempDailyGoal) * 100).toFixed(2),
     waterlogHistory: {}
 }
-
-
-let today = [];
 
 const dailyWaterGoalSlice = createSlice({
     name: 'H2Ohelper',
     initialState,
     reducers: {
         updateWaterData: (state, action) => {
+            console.log(action.payload.tempWaterUnit,'c')
             state.dailyWaterGoal = action.payload.tempDailyGoal;
-            state.waterMainUnit = action.payload.tempWaterUnit;
+            state.waterMainUnit = action.payload.tempWaterUnit || 'ml';
             state.waterUnit = 'ml';
             state.dailyWaterIntake = action.payload.tempDailyWaterIntake;
             state.waterlogHistory = action.payload.waterlogHistory;

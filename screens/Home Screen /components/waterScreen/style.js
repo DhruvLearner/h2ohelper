@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
         textAlign: "center",
         marginBottom: 20,
         fontFamily: '',
+        fontWeight: "bold"
     },
     progressText: {
         color: "#FFFFFF",
