@@ -15,11 +15,11 @@ Notifications.setNotificationHandler({
     shouldSetBadge: true,
   }),
   handleSuccess: (notificationId) => {
-    console.log("Handle success : ", notificationId)
+    
 
   },
   handleError: (notification, error) => {
-    console.log("Handler failed ", error.message)
+    
   }
 })
 
@@ -35,9 +35,9 @@ export default function App() {
 
   useEffect(() => {
     const subscription = Notifications.addNotificationReceivedListener((notification) => {
-      console.log('Notification Received:', notification);
+     
     });
-    console.log('Receive Subscription:', subscription);
+    
     return () => {
       subscription.remove();
     }
@@ -45,9 +45,9 @@ export default function App() {
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log('Notification Response:', response);
+      
     });
-    console.log('Interaction Subscription:', subscription);
+    
     return () => {
       subscription.remove();
     }

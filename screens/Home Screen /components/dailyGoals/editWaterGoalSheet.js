@@ -5,7 +5,8 @@ import { updateDailyGoal, updateWaterUnit } from '../../../../Redux/slice/water_
 import Colors from '../../../../colors';
 
 export default function EditWaterGoalSheet(props) {
-  const selectedUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
+  const selectedUnit = useSelector((state) => state.dailyWaterGoal.waterMainUnit);
+  
   const [number, setNumber] = useState('');
   const [error, setError] = useState('');
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
@@ -35,6 +36,9 @@ export default function EditWaterGoalSheet(props) {
     };
 
   useEffect(() => {
+  }, [selectedUnit]);
+
+  useEffect(() => {
     setNumber(dailyWaterGoal.toString());
   }, [dailyWaterGoal]);
 
@@ -42,7 +46,7 @@ export default function EditWaterGoalSheet(props) {
     <View style={styles.container}>
       <Text style={styles.headerText}>Edit Your Daily Goal</Text>
       <Text style={styles.staticText}>
-        {selectedUnit === 'ml' ? 'Amount (ml): ' : 'Amount (liter): '}
+        Amount (ml):
       </Text>
       <View style={styles.inputContainer}>
        <View style={{display:'flex', flexDirection:'column'}}>

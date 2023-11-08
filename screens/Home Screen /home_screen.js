@@ -13,6 +13,7 @@ export default function HomeScreen() {
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
   const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
   const dailyWaterIntake = useSelector((state) => state.dailyWaterGoal.dailyWaterIntake);
+  const dailyWaterMainUnit = useSelector((state) => state.dailyWaterGoal.waterMainUnit);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function HomeScreen() {
       <View style={styles.container}>
         <ScrollView style={{ flex: 1 }}>
             <WaterScreen dailyGoal={dailyWaterGoal}></WaterScreen>
-            <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit}></EditDailyGoals>
+            <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit} dailyWaterMainUnit={dailyWaterMainUnit}></EditDailyGoals>
             <HistoryWaterLog></HistoryWaterLog>
           </ScrollView>
       </View>
