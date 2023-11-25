@@ -25,7 +25,7 @@ const style = StyleSheet.create({
         alignSelf:'flex-start',
     },
     input: {
-        width: 180,
+        width: 80,
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 5,
@@ -39,7 +39,7 @@ const style = StyleSheet.create({
       customNotificationView:{
         flexDirection:'row',
         justifyContent:'space-between',
-        alignItems:'flex-start'
+        alignItems:'center'
       } ,
       saveBtn:{
         backgroundColor: Colors.primaryColor,

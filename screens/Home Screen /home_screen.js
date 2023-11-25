@@ -1,5 +1,5 @@
-import { ScrollView, View, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { ScrollView, View } from 'react-native'
+import React, { useEffect } from 'react'
 import { styles } from './style'
 import WaterScreen from './components/waterScreen/waterScreen'
 import EditDailyGoals from './components/dailyGoals/editDailyGoals'
@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import RetrieveData from '../../database/localstorage'
 import { updateWaterData } from '../../Redux/slice/water_amount_slice'
 import HistoryWaterLog from './components/historyWaterLog/history_water_log'
+import { fetchNotificationData } from '../../database/localstorage'
+import { setNotificationTime } from '../../Redux/slice/setting_slice'
 
 export default function HomeScreen() {
   
@@ -20,6 +22,10 @@ export default function HomeScreen() {
     const fetchData = async () => {
       const data = await RetrieveData();
       data && dispatch(updateWaterData(data))
+    
+      const fetchNotificationTime = await fetchNotificationData();
+      fetchNotificationTime && dispatch(setNotificationTime(fetchNotificationTime))
+      console.log("FetchNotificationTime > ", fetchNotificationTime)
     };
     fetchData();
   }, [dailyWaterIntake]);
