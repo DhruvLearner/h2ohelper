@@ -56,6 +56,20 @@ export const _updateNotificationTime=async (time)=>{
     }       
 } 
 
+export async function fetchNotificationData(){
+    try {
+        const notificationTime  = await AsyncStorage.getItem('notificationTime');
+         console.log("Not time storage => ",notificationTime )
+        if (notificationTime ) {
+           
+            return notificationTime;
+        } else {
+            return null; 
+        }
+    } catch (error) {
+        return null; 
+    }
+}
 
 export default async function RetrieveData() {
     try {
@@ -63,14 +77,15 @@ export default async function RetrieveData() {
         const dailyWaterIntake = await AsyncStorage.getItem('dailyWaterIntake');
         const waterUnit = await AsyncStorage.getItem('waterUnit');
         const waterlogHistory = await AsyncStorage.getItem('waterlogHistory');
-        
-
-        if (dailyGoal || dailyWaterIntake ||  waterUnit || waterlogHistory) {
+       
+        if (dailyGoal || dailyWaterIntake ||  waterUnit || waterlogHistory  ) {
             const retrievedData = {
                 tempDailyGoal: dailyGoal||0,
                 tempDailyWaterIntake: dailyWaterIntake||0,
                 tempWaterUnit: waterUnit||'ml',
-                waterlogHistory: waterlogHistory  ? JSON.parse(waterlogHistory) : {} 
+                waterlogHistory: waterlogHistory  ? JSON.parse(waterlogHistory) : {} ,
+              
+
             };
             return retrievedData;
         } else {

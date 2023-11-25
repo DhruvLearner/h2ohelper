@@ -27,6 +27,7 @@ const dailyWaterGoalSlice = createSlice({
             state.dailyWaterIntake = action.payload.tempDailyWaterIntake;
             state.waterlogHistory = action.payload.waterlogHistory;
             state.drunkWaterPer = _updateWaterPercentage(state.dailyWaterIntake, state.dailyWaterGoal)
+            
         },
         updateDailyGoal: (state, action) => {
             // Update Daily Goal

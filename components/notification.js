@@ -22,7 +22,6 @@ export default function LocalNotification() {
     const dispatch = useDispatch();
 
     const handleNumberChange = (text) => {
-        
         setNumber(text)
     }
     useEffect(()=>{
@@ -30,20 +29,34 @@ export default function LocalNotification() {
         
     },[defaultNotificationTime])
 
-    const handleSaveBtn = ()=>{
+    const handleSaveBtn = async ()=>{
         if (number === '') {
             setError('   Please enter a value'); 
           } else if (!/^\d+$/.test(number)) {
             setError('Please enter a valid integer value'); 
           } else {
             setError();
+            cancelReminder();
+
             dispatch(setNotificationTime(number));
+            
+            const cancelled = await cancelReminder();
+            if (cancelled) {
+                dispatch(setNotificationPreference())
+                setSchedule(await getSchedule());
+            }
+        
+            const scheduled = await scheduleReminder(number);
+            if (scheduled) {
+                dispatch(setNotificationPreference())
+                setSchedule(await getSchedule());
+            }
+
           }
     }
 
     const changeNotificationPreference = async () => {
         if (notificationPreference) {
-            
             const cancelled = await cancelReminder();
             if (cancelled) {
                 dispatch(setNotificationPreference())
@@ -51,7 +64,6 @@ export default function LocalNotification() {
             }
 
         } else {
-            
             const scheduled = await scheduleReminder(defaultNotificationTime);
             if (scheduled) {
                 dispatch(setNotificationPreference())
@@ -67,9 +79,10 @@ export default function LocalNotification() {
         (async () => {
             const previouslyScheduled = await getSchedule();
             setSchedule(previouslyScheduled)
-
+            console.log("PreviouslyScheduled => ", previouslyScheduled)
             if (previouslyScheduled.find((item) => item.type === 'reminder')) {
-                // setReminder(true);
+                dispatch(setNotificationPreference())
+                console.log("Change Set Previously Notification Preference");
             }
 
         })();
@@ -87,6 +100,7 @@ export default function LocalNotification() {
             </View>
             {notificationPreference &&
             <View style={style.customNotificationView}>
+                <Text>In an every </Text>
                 <View style={style.textInputView}>
                     <TextInput
                         style={[
@@ -100,7 +114,7 @@ export default function LocalNotification() {
                     />
                     {error && <Text style={style.errorText}>{error}</Text>}
                 </View>
-              
+                <Text>minutes </Text>
                 <TouchableOpacity
                 style={style.saveBtn}
                     onPress={() => handleSaveBtn()}
@@ -155,7 +169,7 @@ async function scheduleReminder(notificationTime) {
 
             }
         })
-
+        console.log("Notification Id ", id)
         if (!id) {
             return false;
         }
@@ -178,11 +192,10 @@ async function cancelReminder() {
     for (const item of schedule) {
         if (item.type === 'reminder') {
             await Notifications.cancelScheduledNotificationAsync(item.id);
-            
             cancelled = true
         }
     }
-
+    console.log("Cancelled Schedule => ", cancelled)
     return cancelled;
 
 }
@@ -197,5 +210,6 @@ async function getSchedule() {
             type: scheduleNotification.content.data.type
         })
     }); 
+   
     return schedule;
 }

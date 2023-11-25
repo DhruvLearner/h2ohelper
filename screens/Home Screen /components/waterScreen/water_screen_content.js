@@ -66,8 +66,8 @@ export default function WaterScreenContent() {
           </AnimatedCircularProgress>
           <View style={styles}>
             <Text style={styles.waterProgressText}>
-              {_convertedWater(dailyWaterIntake,dailyWaterMainUnit)} 
-              {dailyWaterMainUnit} of {_convertedWater(dailyWaterGoal,dailyWaterMainUnit)}
+              {_convertedWater(dailyWaterIntake,dailyWaterMainUnit)}{" "}
+              {dailyWaterMainUnit} of {_convertedWater(dailyWaterGoal,dailyWaterMainUnit)}{" "} 
               {dailyWaterMainUnit}
             </Text>
           </View>

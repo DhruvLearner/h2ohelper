@@ -7,12 +7,14 @@ export const styles = StyleSheet.create({
     display:'flex',
     flexDirection:'column',
     justifyContent:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+   
   }, 
     container: {
         display:'flex',
         flexDirection:'column', 
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        
     },
     headerView:{
         display:'flex',
@@ -35,13 +37,16 @@ export const styles = StyleSheet.create({
         borderRadius:8,
         backgroundColor: Colors.primaryColor,
         marginHorizontal: 6,
+        paddingBottom:0,
       },
       item_style: {
-        padding: 18,
+       paddingHorizontal:18,
+       paddingVertical:12,
         marginVertical: 8,
         fontFamily:'',
-        color:'#ffffff'
-
+        color:'#ffffff',
+        fontWeight:'500'
+  
       },
       deleteButton: {
         position: 'absolute',
