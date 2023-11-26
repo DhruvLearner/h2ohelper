@@ -39,7 +39,7 @@ export default function LocalNotification() {
             cancelReminder();
 
             dispatch(setNotificationTime(number));
-            
+
             const cancelled = await cancelReminder();
             if (cancelled) {
                 dispatch(setNotificationPreference())
@@ -79,10 +79,10 @@ export default function LocalNotification() {
         (async () => {
             const previouslyScheduled = await getSchedule();
             setSchedule(previouslyScheduled)
-            console.log("PreviouslyScheduled => ", previouslyScheduled)
+            
             if (previouslyScheduled.find((item) => item.type === 'reminder')) {
                 dispatch(setNotificationPreference())
-                console.log("Change Set Previously Notification Preference");
+               
             }
 
         })();
@@ -195,7 +195,7 @@ async function cancelReminder() {
             cancelled = true
         }
     }
-    console.log("Cancelled Schedule => ", cancelled)
+ 
     return cancelled;
 
 }
