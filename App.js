@@ -6,8 +6,6 @@ import { useFonts } from '@expo-google-fonts/poppins';
 import * as Notifications from 'expo-notifications';
 // import { AppLoading } from 'expo';
 
-
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -52,11 +50,6 @@ export default function App() {
       subscription.remove();
     }
   }, []);
-
-
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // }
 
   
     return (

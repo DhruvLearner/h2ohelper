@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { _updateNotificationPreference, _updateNotificationTime } from "../../database/localstorage";
+import { _updateNotificationPreference, _updateNotificationTime, _updateUserInfo } from "../../database/localstorage";
 
 const initialState = {
     notificationPreference : false,
-    notificationTime : 1
+    notificationTime : 1,
+    user: {
+        name : '',
+        gender : 'Male',
+        weight: '',
+        height:'',
+    }
 }
 
 const settingSlice = createSlice({
@@ -18,9 +24,14 @@ const settingSlice = createSlice({
         setNotificationPreference : (state)=>{
             state.notificationPreference = !state.notificationPreference
             _updateNotificationPreference( state.notificationPreference);
-            }
+        },
+        updateUserInfo:(state, action)=>{
+            state.user = action.payload
+            _updateUserInfo(state.user);
+        }
+
     }
 });
 
-export const {setNotificationTime, setNotificationPreference } = settingSlice.actions;
+export const {setNotificationTime, setNotificationPreference, updateUserInfo } = settingSlice.actions;
 export default settingSlice.reducer;

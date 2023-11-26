@@ -4,11 +4,11 @@ import { styles } from './style'
 import WaterScreen from './components/waterScreen/waterScreen'
 import EditDailyGoals from './components/dailyGoals/editDailyGoals'
 import { useSelector, useDispatch } from 'react-redux';
-import RetrieveData from '../../database/localstorage'
+import RetrieveData, { fetchUserInfo } from '../../database/localstorage'
 import { updateWaterData } from '../../Redux/slice/water_amount_slice'
 import HistoryWaterLog from './components/historyWaterLog/history_water_log'
 import { fetchNotificationData } from '../../database/localstorage'
-import { setNotificationTime } from '../../Redux/slice/setting_slice'
+import { setNotificationTime, updateUserInfo } from '../../Redux/slice/setting_slice'
 
 export default function HomeScreen() {
   
@@ -25,10 +25,15 @@ export default function HomeScreen() {
     
       const fetchNotificationTime = await fetchNotificationData();
       fetchNotificationTime && dispatch(setNotificationTime(fetchNotificationTime))
-      console.log("FetchNotificationTime > ", fetchNotificationTime)
+
+    
     };
     fetchData();
   }, [dailyWaterIntake]);
+
+  fetchUserInfo().then((user)=>{
+    user && dispatch(updateUserInfo(JSON.parse(user)))
+  });
 
   return (
       <View style={styles.container}>

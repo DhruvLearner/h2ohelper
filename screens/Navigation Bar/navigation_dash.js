@@ -14,16 +14,13 @@ import WaterLogSheetContainer from "./waterLog/WaterLogSheet";
 import { useSelector } from 'react-redux';
 import { Alert } from "react-native";
 import SettingScreen from "../Setting Screen/setting_screen";
+import { createStackNavigator } from '@react-navigation/stack';
+import EditProfile from "../Setting Screen/update_profile";
+import LocalNotification from "../../components/notification";
+import HydrationTips from "../Setting Screen/hydration_tips";
 
 
-const Screen1 = () => {
-  return <HomeScreen></HomeScreen>;
-};
-
-const Screen2 = () => {
-  return <SettingScreen></SettingScreen>;
-};
-
+const Stack = createStackNavigator();
 
 export default function NavigationDashboard() {
 
@@ -63,9 +60,9 @@ export default function NavigationDashboard() {
   const refRBSheet = useRef();
 
   const updateBottomSheetState = (state) => {
-    if(state == 'open'){
+    if (state == 'open') {
       refRBSheet.current.open()
-    }else{
+    } else {
       refRBSheet.current.close()
     }
   }
@@ -86,14 +83,13 @@ export default function NavigationDashboard() {
           <Animated.View style={styles.btnCircleUp}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => { 
+              onPress={() => {
 
-                dailyWaterGoal == 0 ? 
-                setDailyGoalAlert() :
-                refRBSheet.current.open()
+                dailyWaterGoal == 0 ?
+                  setDailyGoalAlert() :
+                  refRBSheet.current.open()
 
-                
-                }}
+              }}
             >
               <Image
                 source={require('../../assets/waterdrop.png')}
@@ -109,26 +105,32 @@ export default function NavigationDashboard() {
         <CurvedBottomBarExpo.Screen
           name="title1"
           position="LEFT"
-          component={() => <Screen1 />}
+          component={HomeScreen}
         />
         <CurvedBottomBarExpo.Screen
           name="title2"
-          component={() => <Screen2 />}
+          component={() => (
+            <Stack.Navigator>
+              <Stack.Screen name="SettingScreen" component={SettingScreen}  options={{headerShown:false, headerBackTitleVisible: false }}/>
+              <Stack.Screen name="UpdateProfile" component={EditProfile} options={{headerBackTitleVisible: false,  title: 'Update Profile' }}/>
+              <Stack.Screen name="NotificationScreen" component={LocalNotification} options={{headerBackTitleVisible: false,  title: 'Notification' }}/>
+              <Stack.Screen name="HydrationTips" component={HydrationTips} options={{headerBackTitleVisible: false,  title: 'Hydration Tips' }}/>
+            
+            </Stack.Navigator>
+          )}
           position="RIGHT"
-          options={{ headerShown: true }}
         />
 
       </CurvedBottomBarExpo.Navigator>
-      
       <RBSheet
         ref={refRBSheet}
         closeOnDragDown={true}
         closeOnPressMask={true}
-       
+
         customStyles={{
           container: {
-            borderRadius:12,
-            height:350,
+            borderRadius: 12,
+            height: 350,
           },
           wrapper: {
             shadowColor: "black",
@@ -139,39 +141,35 @@ export default function NavigationDashboard() {
           draggableIcon: {
             backgroundColor: "black"
           },
-          
+
         }}
       >
-       <WaterLogSheetContainer listenEvent={updateBottomSheetState}></WaterLogSheetContainer>
+        <WaterLogSheetContainer listenEvent={updateBottomSheetState}></WaterLogSheetContainer>
       </RBSheet>
+
     </NavigationContainer>
   );
 }
 
-const setDailyGoalAlert=()=>{
+const setDailyGoalAlert = () => {
 
   Alert.alert(
-    'Set your goal first',       
+    'Set your goal first',
     'You can not add water without setting your daily goal', // Message content of the alert
     [
-      // {
-      //   text: 'Cancel',    // Button 1 text
-      //   onPress: () => {
-      //     // Action to take when Button 1 is pressed (e.g., cancel action)
-      //   },
-      //   style: 'cancel'     // 'cancel' style is used for the button that cancels the alert
-      // },
+
       {
-        text: 'OK',      
+        text: 'OK',
         onPress: () => {
-          
+
         }
       }
-     
+
     ],
-    
-    { cancelable: false,
-     } 
+
+    {
+      cancelable: false,
+    }
   );
 
 }

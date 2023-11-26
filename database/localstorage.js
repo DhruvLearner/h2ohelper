@@ -59,7 +59,7 @@ export const _updateNotificationTime=async (time)=>{
 export async function fetchNotificationData(){
     try {
         const notificationTime  = await AsyncStorage.getItem('notificationTime');
-         console.log("Not time storage => ",notificationTime )
+        
         if (notificationTime ) {
            
             return notificationTime;
@@ -70,6 +70,28 @@ export async function fetchNotificationData(){
         return null; 
     }
 }
+
+export async function fetchUserInfo(){
+    try {
+        const user  = await AsyncStorage.getItem('user');
+        if (user) {
+            return user;
+        } else {
+            return null; 
+        }
+    } catch (error) {
+        return null; 
+    }
+}
+
+
+export async function _updateUserInfo(user){
+    try {
+        await AsyncStorage.setItem('user', JSON.stringify(user));
+    } catch (error) {
+        console.error('Error storing data for user info: ' + error);
+    }  
+}   
 
 export default async function RetrieveData() {
     try {

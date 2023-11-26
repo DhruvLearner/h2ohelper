@@ -42,7 +42,7 @@ const style = StyleSheet.create({
         alignItems:'center'
       } ,
       saveBtn:{
-        backgroundColor: Colors.primaryColor,
+        backgroundColor: Colors.secondaryColor,
         padding: 8,
         borderRadius: 4,
         paddingHorizontal:50,
@@ -50,7 +50,9 @@ const style = StyleSheet.create({
       },
       saveText:{
         color:'white',
-        fontSize:16
+        fontSize:16,
+        fontWeight:'bold'
+        
       }
 })
 
