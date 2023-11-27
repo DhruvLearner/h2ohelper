@@ -38,7 +38,7 @@ export default function HomeScreen() {
   return (
       <View style={styles.container}>
         <ScrollView style={{ flex: 1 }}>
-            <WaterScreen dailyGoal={dailyWaterGoal}></WaterScreen>
+            <WaterScreen></WaterScreen>
             <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit} dailyWaterMainUnit={dailyWaterMainUnit}></EditDailyGoals>
             <HistoryWaterLog></HistoryWaterLog>
           </ScrollView>
