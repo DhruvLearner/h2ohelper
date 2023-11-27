@@ -23,15 +23,14 @@ const getMotivationalSentence = (percentage) => {
   
 export default function WaterScreenContent() {
  
+    const confettiRef = useRef();
     const dailyWaterIntake = useSelector((state) => state.dailyWaterGoal.dailyWaterIntake);
     const dailyWaterPer = useSelector((state) => state.dailyWaterGoal.drunkWaterPer);
-    const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal) == " " ? 0 : useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
-    const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
+    const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
     const motivationalSentence = getMotivationalSentence(dailyWaterPer);
     const dailyWaterMainUnit = useSelector((state) => state.dailyWaterGoal.waterMainUnit);
   
     
-    const confettiRef = useRef();
     function triggerConfetti() {
       confettiRef.current?.play(0)
     }
