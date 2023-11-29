@@ -22,7 +22,6 @@ const dailyWaterGoalSlice = createSlice({
     initialState,
     reducers: {
         updateWaterData: (state, action) => {
-            console.log(action.payload.tempWaterUnit, 'c')
             state.dailyWaterGoal = action.payload.tempDailyGoal;
             state.waterMainUnit = action.payload.tempWaterUnit || 'ml';
             state.waterUnit = 'ml';
@@ -66,21 +65,15 @@ const dailyWaterGoalSlice = createSlice({
         },
         updateWaterUnit: (state, action) => {
             state.waterMainUnit = action.payload
-            console.log(state.waterMainUnit, 'state.waterMainUnit')
+            
             _updateWaterUnitStorage(state.waterMainUnit); // Update in local storage
         },
         updateHistoryInsight: (state, action) => {
 
             var historyInsightObj = action.payload;
-            
-            console.log("History Insight => ", historyInsightObj)
 
             state.waterloggedDates= Object.keys(historyInsightObj);
             state.waterloggedAmounts = Object.values(historyInsightObj);
-
-            console.log("DATES => ",state.waterloggedDates, "Water logged =>", state.waterloggedAmounts )
-          
-
         }
 
     } 
@@ -104,10 +97,6 @@ export async function getHistoryInsightArray() {
     }
 
     return sumByDate;
-
-    console.log("SUM BY DATE => ", sumByDate)
-
-
 }
 
 export function formatDateToMMDDYYYY(date) {

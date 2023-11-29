@@ -17,12 +17,8 @@ import Colors from '../../../../colors';
 
 export default function HistoryInsight() {
     
-
     var waterAmounts = useSelector((state) => state.dailyWaterGoal.waterloggedAmounts);
     var dates = useSelector((state) => state.dailyWaterGoal.waterloggedDates);
-
-    console.log("water amount",waterAmounts)
-    console.log("dates", dates)
 
     // waterAmounts =  [800, 200]
     // dates = [ "11/27/2023", "11/26/2023"]
