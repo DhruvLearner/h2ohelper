@@ -19,7 +19,7 @@ const settingSlice = createSlice({
         setNotificationTime: (state, action) => {
             state.notificationTime = action.payload
             _updateNotificationTime(state.notificationTime)
-            console.log("Slice Set NotificationTime => ", state.notificationTime )
+            
         },
         setNotificationPreference : (state)=>{
             state.notificationPreference = !state.notificationPreference

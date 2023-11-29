@@ -5,10 +5,12 @@ import WaterScreen from './components/waterScreen/waterScreen'
 import EditDailyGoals from './components/dailyGoals/editDailyGoals'
 import { useSelector, useDispatch } from 'react-redux';
 import RetrieveData, { fetchUserInfo } from '../../database/localstorage'
-import { updateWaterData } from '../../Redux/slice/water_amount_slice'
+import { updateWaterData, getHistoryInsightArray, updateHistoryInsight } from '../../Redux/slice/water_amount_slice'
 import HistoryWaterLog from './components/historyWaterLog/history_water_log'
 import { fetchNotificationData } from '../../database/localstorage'
 import { setNotificationTime, updateUserInfo } from '../../Redux/slice/setting_slice'
+import HistoryInsight from './components/Hydration History Insight/history_insight'
+
 
 export default function HomeScreen() {
   
@@ -26,7 +28,9 @@ export default function HomeScreen() {
       const fetchNotificationTime = await fetchNotificationData();
       fetchNotificationTime && dispatch(setNotificationTime(fetchNotificationTime))
 
-    
+      const historyInsightObj = await getHistoryInsightArray();
+      dispatch(updateHistoryInsight(historyInsightObj));
+
     };
     fetchData();
   }, [dailyWaterIntake]);
@@ -41,6 +45,7 @@ export default function HomeScreen() {
             <WaterScreen></WaterScreen>
             <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit} dailyWaterMainUnit={dailyWaterMainUnit}></EditDailyGoals>
             <HistoryWaterLog></HistoryWaterLog>
+            <HistoryInsight></HistoryInsight>
           </ScrollView>
       </View>
   )

@@ -41,9 +41,6 @@ export default function HydrationTips() {
   )
 }
 
-
-
-
 export const styles = StyleSheet.create({
 
   container: {
