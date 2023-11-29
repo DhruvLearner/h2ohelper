@@ -169,7 +169,7 @@ async function scheduleReminder(notificationTime) {
 
             }
         })
-        console.log("Notification Id ", id)
+        
         if (!id) {
             return false;
         }

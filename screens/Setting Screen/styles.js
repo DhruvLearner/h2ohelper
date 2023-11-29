@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     },
     option: {
         marginBottom: 12,
-        padding: 16,
+        padding: 14,
         elevation: 5,
         borderRadius: 10,
         marginHorizontal: 24,
@@ -48,6 +48,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: 'white',
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
     },
     versionStyle:{
         fontSize:14,
