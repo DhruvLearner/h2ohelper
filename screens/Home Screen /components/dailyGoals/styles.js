@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 5
+        marginBottom: 10,
+        marginTop:5,
     },
     headerText: {
         fontSize: 16,
