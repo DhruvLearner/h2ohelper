@@ -59,10 +59,10 @@ export default function WaterScreenContent() {
           >
             {(fill) => (
               <Text style={styles.progressText}>
-                {dailyWaterPer?.toString()}%
+                {dailyWaterPer?.toString()}% 
               </Text>
             )}
-          </AnimatedCircularProgress>
+          </AnimatedCircularProgress> 
           <View style={styles}>
             <Text style={styles.waterProgressText}>
               {_convertedWater(dailyWaterIntake,dailyWaterMainUnit)}{" "}
