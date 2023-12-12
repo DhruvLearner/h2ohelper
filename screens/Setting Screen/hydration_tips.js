@@ -47,28 +47,29 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
     paddingBottom:80,
+    backgroundColor:Colors.secondaryColor
   },
   item: {
     paddingHorizontal: 10,
     paddingVertical: 10,
     marginBottom: 10,
     marginHorizontal: 20,
-    backgroundColor: 'white',
+    backgroundColor: Colors.primaryColor,
     borderRadius: 10,
     borderWidth: 0.1,
-    shadowColor: "black",
+    shadowColor: Colors.darkColor,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
   tips: {
     fontSize: 14,
-    color: "black",
+    color: Colors.thirdText,
   },
   title:{
     fontSize:16, 
-    fontWeight:'bold',
-    color:Colors.secondaryColor,
+    fontWeight:'700',
+    color:Colors.thirdText,
     paddingBottom:5,
   }
 

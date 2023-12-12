@@ -18,10 +18,11 @@ export const styles = StyleSheet.create({
     headerText: {
         fontSize: 16,
         fontFamily: '',
+        color: Colors.primaryText,
         fontWeight: "bold"
     },
     editText: {
-        color: 'grey',
+        color: Colors.primaryText,
         fontSize: 14,
         fontFamily: '',
 
@@ -37,15 +38,15 @@ export const styles = StyleSheet.create({
     goalText: {
         fontSize: 30,
         fontFamily: '',
-        color: '#FFFFFF'
+        color: Colors.lightColor
     },
     setGoalMsgText: {
         fontSize: 24,
         fontFamily: '',
-        color: '#FFFFFF'
+        color: Colors.lightColor
     },
     editText2: {
-        color: '#FFFFFF',
+        color: Colors.lightColor,
         fontSize: 13,
         fontFamily: '',
         padding: 3,

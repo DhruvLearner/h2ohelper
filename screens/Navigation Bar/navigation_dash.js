@@ -18,6 +18,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import EditProfile from "../Setting Screen/update_profile";
 import LocalNotification from "../../components/notification";
 import HydrationTips from "../Setting Screen/hydration_tips";
+import Colors from "../../colors";
 
 
 const Stack = createStackNavigator();
@@ -25,7 +26,7 @@ const Stack = createStackNavigator();
 export default function NavigationDashboard() {
 
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
-
+  const tabBgColor = Colors.primaryColor
 
   const _renderIcon = (routeName, selectedTab) => {
     let icon = '';
@@ -43,7 +44,7 @@ export default function NavigationDashboard() {
       <Ionicons
         name={icon}
         size={25}
-        color={routeName === selectedTab ? 'black' : 'gray'}
+        color={routeName === selectedTab ? Colors.thirdText : Colors.secondaryText}
       />
     );
   };
@@ -69,14 +70,16 @@ export default function NavigationDashboard() {
 
   return (
     <NavigationContainer>
+
       <CurvedBottomBarExpo.Navigator
         type="DOWN"
         screenOptions={{ headerShown: false }}
         style={styles.bottomBar}
+      
         shadowStyle={styles.shawdow}
         height={75}
         circleWidth={60}
-        bgColor="white"
+        bgColor={tabBgColor}
         initialRouteName="title1"
         borderTopLeftRight
         renderCircle={({ selectedTab, navigate }) => (
@@ -114,7 +117,17 @@ export default function NavigationDashboard() {
               <Stack.Screen name="SettingScreen" component={SettingScreen}  options={{headerShown:false, headerBackTitleVisible: false }}/>
               <Stack.Screen name="UpdateProfile" component={EditProfile} options={{headerBackTitleVisible: false,  title: 'Update Profile' }}/>
               <Stack.Screen name="NotificationScreen" component={LocalNotification} options={{headerBackTitleVisible: false,  title: 'Notification' }}/>
-              <Stack.Screen name="HydrationTips" component={HydrationTips} options={{headerBackTitleVisible: false,  title: 'Hydration Tips' }}/>
+              <Stack.Screen name="HydrationTips" component={HydrationTips} options={{
+          headerBackTitleVisible: false,
+          title: 'Hydration Tips',
+          headerStyle: {
+            backgroundColor: Colors.backgroundColor, 
+          },
+          headerTintColor: Colors.white,
+          headerTitleStyle: {
+            fontWeight: 'bold', 
+          },
+        }}/>
             
             </Stack.Navigator>
           )}
@@ -130,16 +143,17 @@ export default function NavigationDashboard() {
         customStyles={{
           container: {
             borderRadius: 12,
-            height: 350,
+            height: '42%',
+            backgroundColor:Colors.primaryColor
           },
           wrapper: {
-            shadowColor: "black",
+            shadowColor: Colors.darkColor,
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.2,
             shadowRadius: 3,
           },
           draggableIcon: {
-            backgroundColor: "black"
+            backgroundColor: Colors.white
           },
 
         }}

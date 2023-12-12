@@ -4,6 +4,7 @@ import { styles } from './styles';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import EditWaterGoalSheet from './editWaterGoalSheet';
 import { _convertedWater } from '../waterScreen/water_screen_content';
+import Colors from '../../../../colors';
 export default function EditDailyGoals(props) {
   const refRBSheet = useRef();
 
@@ -42,6 +43,7 @@ export default function EditDailyGoals(props) {
         customStyles={{
           container: {
             borderRadius: 12,
+            backgroundColor: Colors.primaryColor
           },
           wrapper: {
             shadowColor: "#000",
@@ -50,7 +52,7 @@ export default function EditDailyGoals(props) {
             shadowRadius: 3,
           },
           draggableIcon: {
-            backgroundColor: "black",
+            backgroundColor: Colors.white,
           },
         }}
       >

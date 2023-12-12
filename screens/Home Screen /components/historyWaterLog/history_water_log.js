@@ -76,14 +76,13 @@ export default function HistoryWaterLog() {
 
                             {isEdit && (
                                 <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteBtn(item)}>
-                                    <AntDesign name="minuscircle" size={14} color="white" />
+                                    <AntDesign name="minuscircle" size={14} color={Colors.thirdText} />
                                 </TouchableOpacity>
                             )
                             }
-                            
                                 <View style={styles.item_container}>
                                     <Text style={styles.item_style}>{item.loggedWater} {dailyWaterUnit}</Text>
-                                    <Text style={{ textAlign: "center", marginTop: 3, backgroundColor:Colors.secondaryColor , color:'white', paddingVertical:5, fontWeight:'bold' }}>{getHourAndMinuteFromDate(new Date(item.timeStamp))}</Text>
+                                    <Text style={{ textAlign: "center", marginTop: 3, backgroundColor:Colors.secondaryColor , color:Colors.primaryText, paddingVertical:5, fontWeight:'bold' }}>{getHourAndMinuteFromDate(new Date(item.timeStamp))}</Text>
                             </View>
                         </View>
                     )}

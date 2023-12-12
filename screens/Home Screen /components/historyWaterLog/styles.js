@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flexDirection:'column',
     justifyContent:'center',
     alignSelf:'center',
-   
+  
   }, 
     container: {
         display:'flex',
@@ -27,12 +27,13 @@ export const styles = StyleSheet.create({
     headerText:{
         fontSize:16,
         fontFamily:'',
+        color: Colors.primaryText,
         fontWeight: "bold"
     },
     editText: {
-        color: 'blue', 
         fontSize: 14, 
         fontFamily:'',
+        color : Colors.primaryText
       },
       item_container:{
         borderRadius:8,
@@ -45,9 +46,8 @@ export const styles = StyleSheet.create({
        paddingVertical:12,
         marginVertical: 8,
         fontFamily:'',
-        color:'#ffffff',
-        fontWeight:'500'
-  
+        color:Colors.thirdText,
+        fontWeight:'700',
       },
       deleteButton: {
         position: 'absolute',
@@ -55,11 +55,12 @@ export const styles = StyleSheet.create({
         right: 4,
         backgroundColor: 'red',
         borderRadius: 50,
+       
         padding: 1,
         zIndex: 1,
       },
       deleteButtonText: {
-        color: 'white',
+        color: Colors.lightColor,
         fontSize: 16,
       },
       

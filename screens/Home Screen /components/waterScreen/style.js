@@ -3,7 +3,7 @@ import Colors from "../../../../colors";
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.primaryColor,
+        backgroundColor: Colors.secondaryColor,
         minHeight: 350,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         padding: 12
     },
     screenHeader: {
-        color: '#FFFFFF',
+        color: Colors.thirdText,
         fontSize: 25,
         textAlign: "center",
         marginBottom: 20,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     progressText: {
-        color: "#FFFFFF",
+        color: Colors.thirdText,
         fontWeight: "bold",
         fontSize: 20,
         fontFamily: '',
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     waterProgressText: {
-        color: '#FFFFFF',
+        color: Colors.thirdText,
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 20,

@@ -4,6 +4,7 @@ import { styles } from './style';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { useSelector } from 'react-redux';
 import LottieView from 'lottie-react-native';
+import Colors from '../../../../colors';
 
 const getMotivationalSentence = (percentage) => {
     if (percentage === 0) {
@@ -30,6 +31,7 @@ export default function WaterScreenContent() {
     const motivationalSentence = getMotivationalSentence(dailyWaterPer);
     const dailyWaterMainUnit = useSelector((state) => state.dailyWaterGoal.waterMainUnit);
   
+    const tabBgColor = Colors.backgroundColor
     
     function triggerConfetti() {
       confettiRef.current?.play(0)
@@ -52,9 +54,9 @@ export default function WaterScreenContent() {
             size={120}
             width={15}
             fill={Number(dailyWaterPer)}
-            tintColor="#00e0ff"
+            tintColor= "black"
             onAnimationComplete={() => console.log()}
-            backgroundColor="#3d5875"
+            backgroundColor={tabBgColor}
             lineCap='round'
           >
             {(fill) => (

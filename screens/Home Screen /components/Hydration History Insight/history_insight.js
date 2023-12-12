@@ -22,7 +22,7 @@ export default function HistoryInsight() {
 
     // waterAmounts =  [800, 200]
     // dates = [ "11/27/2023", "11/26/2023"]
-
+    
     const data = {
         labels: dates,
         datasets: [
@@ -50,11 +50,11 @@ export default function HistoryInsight() {
         barPercentage: 1.0,
         useShadowColorFromDataset: false // optional
       };
-
+      console.log(data,'data')
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>Hydration History Insight</Text>
-          
+            {dates.length ? 
             <LineChart
                 data={data}
                 width={380}
@@ -62,7 +62,11 @@ export default function HistoryInsight() {
                 chartConfig={chartConfig}
                 // withInnerLines={false}
                 bezier
-            />
+            />: 
+            <Text style={{ marginTop: 4, fontSize: 18 }}>
+                You didn't logged water
+            </Text>}
+            
         </View>
     )
 }

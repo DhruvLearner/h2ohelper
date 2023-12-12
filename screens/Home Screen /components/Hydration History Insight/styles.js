@@ -7,13 +7,12 @@ export const styles = StyleSheet.create({
         paddingHorizontal:10,
         display:'flex',
         flexDirection:'column',
-        
-        
     },
     headerText:{
         fontSize:16,
         fontFamily:'',
         fontWeight: "bold",
         marginBottom:10,
+        color: Colors.primaryText
     }
 });

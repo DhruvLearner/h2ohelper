@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
       alignContent: 'center',
       paddingHorizontal: 10,
       height:800,
+      backgroundColor:Colors.primaryColor
      
-    },
+    }, 
     addWater: {
       paddingHorizontal: 10,
       paddingVertical: 10,
@@ -24,16 +25,16 @@ const styles = StyleSheet.create({
       minWidth: 80,
       borderRadius: 10,
       //backgroundColor: "#efefef", 
-      borderWidth: 1,
+      borderWidth: 0,
       
     },
     selectedValue: {
-      backgroundColor: "#efefef",
-      borderColor: "black", 
-      color:'black'
+      backgroundColor: Colors.secondaryColor,
+      borderColor: Colors.darkColor, 
+      color:Colors.darkColor
     },
     mlText: {
-      color: 'black', 
+      color: Colors.darkColor, 
       textAlign: 'center',
       fontFamily:'',
       
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     selectedText: {
-      color: 'black', 
+      color: Colors.darkColor, 
     },
     selectedValueText: {
       margin: 10,
@@ -52,17 +53,18 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontFamily:'',
       fontSize:18,
+      color:Colors.secondaryText
       
     },
     submitButton: {
-      backgroundColor: Colors.primaryColor, 
+      backgroundColor: Colors.secondaryColor, 
       borderRadius: 8,
-      padding: 5,
-     alignSelf: 'center', 
+      padding: 10,
+      alignSelf: 'center', 
   },
     
     buttonText: {
-      color: 'white',
+      color: Colors.primaryText,
       fontSize: 18,
       marginHorizontal:35,
       fontFamily:'',
@@ -75,6 +77,6 @@ const styles = StyleSheet.create({
       backgroundColor: 'gray', 
     },
     disabledButtonText: {
-      color: 'white', 
+      color: Colors.lightColor, 
     },
   });

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../colors";
 
 export const styles = StyleSheet.create({
     container: {
@@ -27,7 +28,7 @@ export const styles = StyleSheet.create({
         borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        backgroundColor: Colors.primaryColor,
         bottom: 22,
         shadowColor: '#000',
         shadowOffset: {
@@ -47,6 +48,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+      
       },
       img: {
         width: 30,
@@ -54,10 +56,10 @@ export const styles = StyleSheet.create({
       },
       screen1: {
         flex: 1,
-        backgroundColor: '#BFEFFF',
+        
       },
       screen2: {
         flex: 1,
-        backgroundColor: '#FFEBCD',
+       
       },
   });

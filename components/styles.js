@@ -49,7 +49,7 @@ const style = StyleSheet.create({
         marginVertical:10
       },
       saveText:{
-        color:'white',
+        color:Colors.lightColor,
         fontSize:16,
         fontWeight:'bold'
         

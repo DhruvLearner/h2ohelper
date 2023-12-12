@@ -53,6 +53,7 @@ export default function EditWaterGoalSheet(props) {
         <TextInput
           style={[
             styles.input,
+            {color:Colors.secondaryText },
             error && { borderColor: 'red' }
           ]}
           onChangeText={handleNumberChange}
@@ -99,10 +100,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: Colors.primaryColor
   },
   headerText: {
     fontSize: 20,
     fontFamily: '',
+    fontWeight: '600',
+    color: Colors.secondaryText,
     marginBottom: 20,
   },
   inputContainer: {
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
   input: {
     width: 150,
     height: 40,
-    borderColor: 'gray',
+    borderColor: 'red',
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
@@ -127,21 +131,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mlBtnStyle: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.primaryColor,
     padding: 8,
     borderRadius: 4,
     marginRight: 10,
   },
   literBtnStyle: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.primaryColor,
     padding: 8,
     borderRadius: 4,
   },
   selectedUnitButton: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.secondaryText,
   },
   selectedBtnText: {
-    color: '#ffffff',
+    color: Colors.primaryText,
     fontFamily: '',
     fontSize: 16,
   },
@@ -153,10 +157,12 @@ const styles = StyleSheet.create({
   mlBtnText: {
     fontFamily: '',
     fontSize: 16,
+    color : Colors.secondaryText
   },
   literBtnText: {
     fontFamily: '',
     fontSize: 16,
+    color : Colors.secondaryText
   },
   input: {
     width: 150,
@@ -172,10 +178,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 40,
-    color: '#FFFFFF',
+    color: Colors.lightColor,
   },
   buttonText: {
-    color: 'white',
+    color: Colors.primaryText,
     fontSize: 18,
     marginHorizontal: 55,
     fontFamily: '',
@@ -185,7 +191,7 @@ const styles = StyleSheet.create({
   staticText: {
     fontSize: 16,
     fontFamily: '',
-    color: 'black',
+    color: Colors.thirdText,
     marginRight: 10,
   },
 });

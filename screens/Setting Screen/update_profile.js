@@ -102,7 +102,7 @@ export default EditProfile;
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: 'white',
+    backgroundColor: Colors.lightColor,
     height: '100%'
   },
 
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     color: 'gray'
   },
   genderBtnStyle: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.lightColor,
     width: '50%',
     borderRadius: 4,
     paddingVertical: 12,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryColor,
   },
   selectedBtnText: {
-    color: '#ffffff',
+    color: Colors.lightColor,
     fontFamily: '',
     fontSize: 16,
     textAlign: 'center'
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondaryColor
   },
   saveTextStyle: {
-    color: 'white',
+    color: Colors.lightColor,
     fontSize: 22,
     fontWeight: 'bold',
     margin: 10,
