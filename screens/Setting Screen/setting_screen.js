@@ -32,7 +32,7 @@ export default function SettingScreen() {
   const options = {
     title: 'H2O Helper',
     message: 'A water reminder application',
-    url: 'https://google.com',
+    url: 'https://google.com', 
   }
 
   const onShare = async () => {
