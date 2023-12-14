@@ -36,7 +36,7 @@ export default function EditDailyGoals(props) {
       </View>
       <View style={[styles.container,{color: colors?.blackNwhite,backgroundColor: colors?.screen2Bg}]}>
         {props.dailyGoal === 0 ? (
-          <Text style={styles.setGoalMsgText}>Set Your Daily Goal</Text>
+          <Text style={[styles.setGoalMsgText,,{color: colors?.lightColor}]}>Set Your Daily Goal</Text>
         ) : (
           <Text style={[styles.goalText,{color: colors?.lightColor}]}>
             {_convertedWater(props.dailyGoal,props.dailyWaterMainUnit)}{props.dailyWaterMainUnit}
