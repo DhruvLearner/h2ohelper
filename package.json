@@ -12,7 +12,7 @@
     "@expo-google-fonts/poppins": "^0.2.3",
     "@morpheme/bottom-sheet": "^1.0.0-rc.2",
     "@notifee/react-native": "^7.8.0",
-    "@react-native-async-storage/async-storage": "1.18.2",
+    "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-community/art": "^1.2.0",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.20",

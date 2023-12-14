@@ -75,7 +75,7 @@ export default function EditWaterGoalSheet(props) {
         <View style={styles.switchMainCon}>
           <TouchableOpacity
             style={[
-              styles.mlBtnStyle,{backgroundColor: colors?.genderBtn},
+              styles.mlBtnStyle,{backgroundColor: isDarkTheme == 1 ? null : colors?.genderBtn},
               selectedUnit === 'ml' && {backgroundColor: isDarkTheme == 1 ? colors?.secondaryText : colors?.primaryColor},
             ]}
             onPress={() => handleUnitChange('ml')}
@@ -84,7 +84,7 @@ export default function EditWaterGoalSheet(props) {
           </TouchableOpacity>
           <TouchableOpacity
             style={[
-              styles.literBtnStyle, {backgroundColor: colors?.genderBtn},
+              styles.literBtnStyle,{backgroundColor: isDarkTheme == 1 ? null : colors?.genderBtn},
               selectedUnit === 'liter' && {backgroundColor: isDarkTheme == 1 ? colors?.secondaryText : colors?.primaryColor} ,
             ]}
             onPress={() => handleUnitChange('liter')}

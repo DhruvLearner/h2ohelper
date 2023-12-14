@@ -58,7 +58,7 @@ const EditProfile = () => {
         <TouchableOpacity
           style={[
             styles.genderBtnStyle,{backgroundColor: colors?.genderBtn},
-            selectedGender === 'Male' && styles.selectedUnitButton,
+            selectedGender === 'Male' && [styles.selectedUnitButton,{backgroundColor: colors?.primaryColor}],
           ]}
           onPress={() => handleGenderChange('Male')}
         >
@@ -67,7 +67,7 @@ const EditProfile = () => {
         <TouchableOpacity
           style={[
             styles.genderBtnStyle,{backgroundColor: colors?.genderBtn},
-            selectedGender === 'Female' && styles.selectedUnitButton,
+            selectedGender === 'Female' && [styles.selectedUnitButton,{backgroundColor: colors?.primaryColor}],
           ]}
           onPress={() => handleGenderChange('Female')}
         >

@@ -32,7 +32,7 @@ export default function SettingScreen() {
   const options = {
     title: 'H2O Helper',
     message: 'A water reminder application',
-    url: 'https://google.com'
+    url: 'https://google.com',
   }
 
   const onShare = async () => {
@@ -81,7 +81,7 @@ export default function SettingScreen() {
           <Entypo name="chevron-right" size={24} color={colors?.thirdText} />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleUpdateProfileClick}>
+      <TouchableOpacity onPress={onShare}>
         <View style={[styles.option,{backgroundColor: colors?.secondaryColor, shadowColor: colors?.darkColor}]}>
           <Text style={[styles.optionTextStyle, {color: colors?.thirdText}]}>Share H2OHelper</Text>
           <Entypo name="chevron-right" size={24} color={colors?.thirdText} />
