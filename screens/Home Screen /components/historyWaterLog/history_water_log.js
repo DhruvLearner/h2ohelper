@@ -85,7 +85,7 @@ export default function HistoryWaterLog() {
 
                             {isEdit && (
                                 <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteBtn(item)}>
-                                    <AntDesign name="minuscircle" size={14} color={colors?.thirdText} />
+                                    <AntDesign name="minuscircle" size={14} color={colors?.white} />
                                 </TouchableOpacity>
                             )
                             }

@@ -60,12 +60,6 @@ export default function SettingScreen() {
       </TouchableOpacity>
       <TouchableOpacity onPress={handleUpdateProfileClick}>
         <View style={[styles.option,{backgroundColor: colors?.secondaryColor, shadowColor: colors?.darkColor}]}>
-          <Text style={[styles.optionTextStyle, {color: colors?.thirdText}]}>About us</Text>
-          <Entypo name="chevron-right" size={24} color={colors?.thirdText} />
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleUpdateProfileClick}>
-        <View style={[styles.option,{backgroundColor: colors?.secondaryColor, shadowColor: colors?.darkColor}]}>
           <Text style={[styles.optionTextStyle, {color: colors?.thirdText}]}>Share H2OHelper</Text>
           <Entypo name="chevron-right" size={24} color={colors?.thirdText} />
         </View>

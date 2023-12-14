@@ -53,7 +53,6 @@ export const styles = StyleSheet.create({
         right: 4,
         backgroundColor: 'red',
         borderRadius: 50,
-       
         padding: 1,
         zIndex: 1,
       },

@@ -45,12 +45,12 @@ export default function WaterLogSheetContainer(props) {
       {mlValues.map((mlValue, index) => (
         <TouchableOpacity key={index} onPress={() => _waterLog(mlValue)}>
           <View style={[
-            styles.addWater,
-            selectedValue === mlValue && (styles.selectedValue ,  { backgroundColor: isDarkTheme == 1 ? colors?.secondaryColor : colors?.blackNwhite, borderColor: colors?.darkColor, color: isDarkTheme == 1 ? colors?.darkColor : colors?.whiteNblack })
+            styles.addWater, { color: "black" },
+            selectedValue === mlValue && ({ backgroundColor: isDarkTheme == 1 ? colors?.secondaryColor : "#e1e1e1" })
           ]}>
             <Text style={[
               styles.mlText,{color: colors?.darkColor},
-              selectedValue === mlValue && { color: isDarkTheme == 1 ? colors?.darkColor : colors?.whiteNblack }
+              selectedValue === mlValue && { color: isDarkTheme == 1 ? colors?.darkColor : colors?.blackNwhite }
             ]}>
               {mlValue}{dailyWaterUnit}
             </Text>
@@ -59,14 +59,14 @@ export default function WaterLogSheetContainer(props) {
       ))}
       <TouchableOpacity
         style={[
-          styles.submitButton,{backgroundColor: colors?.secondaryColor },
+          styles.submitButton,{backgroundColor: isDarkTheme == 1 ? colors?.secondaryColor : colors?.backgroundColor },
           isSubmitDisabled && styles.disabledSubmitButton
         ]}
         onPress={_addWater}
         disabled={isSubmitDisabled}
       >
         <Text style={[
-          styles.buttonText, {color: colors?.primaryText},
+          styles.buttonText, ,{color: colors?.lightColor},
           isSubmitDisabled && (styles.disabledButtonText,{color: colors?.lightColor})
         ]}>Submit</Text>
       </TouchableOpacity>

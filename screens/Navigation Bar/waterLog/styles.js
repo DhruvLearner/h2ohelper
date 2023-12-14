@@ -21,8 +21,7 @@ export const styles = StyleSheet.create({
       marginRight: 5,
       minWidth: 80,
       borderRadius: 10,
-      borderWidth: 0,
-      
+      borderWidth: 1
     },
     mlText: {
       

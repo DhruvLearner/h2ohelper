@@ -76,7 +76,7 @@ export default function EditWaterGoalSheet(props) {
           <TouchableOpacity
             style={[
               styles.mlBtnStyle,{backgroundColor: colors?.genderBtn},
-              selectedUnit === 'ml' && {backgroundColor: colors?.secondaryText},
+              selectedUnit === 'ml' && {backgroundColor: isDarkTheme == 1 ? colors?.secondaryText : colors?.primaryColor},
             ]}
             onPress={() => handleUnitChange('ml')}
           >
@@ -85,7 +85,7 @@ export default function EditWaterGoalSheet(props) {
           <TouchableOpacity
             style={[
               styles.literBtnStyle, {backgroundColor: colors?.genderBtn},
-              selectedUnit === 'liter' && {backgroundColor: colors?.secondaryText} ,
+              selectedUnit === 'liter' && {backgroundColor: isDarkTheme == 1 ? colors?.secondaryText : colors?.primaryColor} ,
             ]}
             onPress={() => handleUnitChange('liter')}
           >
@@ -95,7 +95,7 @@ export default function EditWaterGoalSheet(props) {
         {error && <Text></Text>} 
         </View>
       </View>
-      <TouchableOpacity style={[styles.submitButton,{backgroundColor: colors?.backgroundColor,color: colors?.lightColor}]} onPress={handleSubmit}>
+      <TouchableOpacity style={[styles.submitButton,{backgroundColor: colors?.backgroundColor}]} onPress={handleSubmit}>
         <Text style={[styles.buttonText,{color: colors?.lightColor}]}>Submit</Text>
       </TouchableOpacity>
     </View>
