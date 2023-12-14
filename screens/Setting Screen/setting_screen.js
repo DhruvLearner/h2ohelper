@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { styles } from './styles'
@@ -6,6 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 import Colors, {lightTheme, darkTheme} from '../../colors'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector } from 'react-redux';
+
 
 export default function SettingScreen() {
   const [colors, setColors] = useState(null);
@@ -27,6 +28,28 @@ export default function SettingScreen() {
   const handleNotificationClick = () => {
     navigation.navigate('NotificationScreen');
   }
+
+  const options = {
+    title: 'H2O Helper',
+    message: 'A water reminder application',
+    url: 'https://google.com'
+  }
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share(options);
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+        } else {
+        }
+      } else if (result.action === Share.dismissedAction) {
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
+
+
 
   return (
     <View style={[styles.container,{backgroundColor:colors?.secondaryColor}]}>
@@ -62,6 +85,7 @@ export default function SettingScreen() {
         <View style={[styles.option,{backgroundColor: colors?.secondaryColor, shadowColor: colors?.darkColor}]}>
           <Text style={[styles.optionTextStyle, {color: colors?.thirdText}]}>Share H2OHelper</Text>
           <Entypo name="chevron-right" size={24} color={colors?.thirdText} />
+
         </View>
       </TouchableOpacity>
       <Text style={styles.versionStyle}>v1.0.1 </Text>
