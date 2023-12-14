@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styles } from './styles'
 import { useDispatch } from 'react-redux'
 import { TouchableOpacity } from 'react-native'
@@ -7,10 +7,19 @@ import { AntDesign } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 import { formatDateToMMDDYYYY } from '../../../../Redux/slice/water_amount_slice';
 import { removeWater } from '../../../../Redux/slice/water_amount_slice';
-import Colors from '../../../../colors'
+import Colors,{darkTheme,lightTheme} from '../../../../colors'
 
 export default function HistoryWaterLog() {
 
+    const [colors, setColors] = useState(null);
+    const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+    useEffect(() => {
+        if (isDarkTheme == true) {
+            setColors(darkTheme)
+        }else{
+            setColors(lightTheme)
+        }
+    }, [isDarkTheme]);
     const dispatch = useDispatch();
     const [isEdit, setEdit] = useState(false);
     const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
@@ -61,9 +70,9 @@ export default function HistoryWaterLog() {
     return (
         <View style={styles.container}>
             <View style={styles.headerView}>
-                <Text style={styles.headerText}>History</Text>
+                <Text style={[styles.headerText,{color: colors?.primaryText,}]}>History</Text>
                 <TouchableOpacity onPress={handleEditBtn}>
-                    <Text style={styles.editText}>Edit</Text>
+                    <Text style={[styles.editText,{color : colors?.primaryText}]}>Edit</Text>
                 </TouchableOpacity>
             </View>
             {currentDateHistory &&
@@ -76,13 +85,13 @@ export default function HistoryWaterLog() {
 
                             {isEdit && (
                                 <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteBtn(item)}>
-                                    <AntDesign name="minuscircle" size={14} color={Colors.thirdText} />
+                                    <AntDesign name="minuscircle" size={14} color={colors?.thirdText} />
                                 </TouchableOpacity>
                             )
                             }
-                                <View style={styles.item_container}>
+                                <View style={[styles.item_container,{backgroundColor: colors?.primaryColor}]}>
                                     <Text style={styles.item_style}>{item.loggedWater} {dailyWaterUnit}</Text>
-                                    <Text style={{ textAlign: "center", marginTop: 3, backgroundColor:Colors.secondaryColor , color:Colors.primaryText, paddingVertical:5, fontWeight:'bold' }}>{getHourAndMinuteFromDate(new Date(item.timeStamp))}</Text>
+                                    <Text style={{ textAlign: "center", marginTop: 3, backgroundColor:colors?.screen2Bg , color:colors?.white, paddingVertical:5, fontWeight:'bold' }}>{getHourAndMinuteFromDate(new Date(item.timeStamp))}</Text>
                             </View>
                         </View>
                     )}

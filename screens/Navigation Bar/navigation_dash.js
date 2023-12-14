@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   Animated,
   TouchableOpacity,
@@ -18,7 +18,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import EditProfile from "../Setting Screen/update_profile";
 import LocalNotification from "../../components/notification";
 import HydrationTips from "../Setting Screen/hydration_tips";
-import Colors from "../../colors";
+import { darkTheme, lightTheme } from "../../colors";
+import AppTheme from "../../components/apptheme";
 
 
 const Stack = createStackNavigator();
@@ -26,8 +27,17 @@ const Stack = createStackNavigator();
 export default function NavigationDashboard() {
 
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
-  const tabBgColor = Colors.primaryColor
-
+  const [colors, setColors] = useState(null);
+  const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+  useEffect(() => {
+    if (isDarkTheme == true) {
+      setColors(darkTheme)
+    }else{
+      setColors(lightTheme)
+    }
+  }, [isDarkTheme]);
+  const tabBgColor = colors?.bottomBar
+    
   const _renderIcon = (routeName, selectedTab) => {
     let icon = '';
 
@@ -44,7 +54,7 @@ export default function NavigationDashboard() {
       <Ionicons
         name={icon}
         size={25}
-        color={routeName === selectedTab ? Colors.thirdText : Colors.secondaryText}
+        color={routeName === selectedTab ? colors?.thirdText : colors?.secondaryText}
       />
     );
   };
@@ -83,7 +93,7 @@ export default function NavigationDashboard() {
         initialRouteName="title1"
         borderTopLeftRight
         renderCircle={({ selectedTab, navigate }) => (
-          <Animated.View style={styles.btnCircleUp}>
+          <Animated.View style={[styles.btnCircleUp,{backgroundColor: colors?.tipsBg}]}>
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
@@ -115,19 +125,50 @@ export default function NavigationDashboard() {
           component={() => (
             <Stack.Navigator>
               <Stack.Screen name="SettingScreen" component={SettingScreen}  options={{headerShown:false, headerBackTitleVisible: false }}/>
-              <Stack.Screen name="UpdateProfile" component={EditProfile} options={{headerBackTitleVisible: false,  title: 'Update Profile' }}/>
-              <Stack.Screen name="NotificationScreen" component={LocalNotification} options={{headerBackTitleVisible: false,  title: 'Notification' }}/>
+              <Stack.Screen name="UpdateProfile" component={EditProfile} 
+              options={{
+                headerBackTitleVisible: false,  title: 'Update Profile',
+                headerStyle: {
+                  backgroundColor: colors?.backgroundColor, 
+                },
+                headerTintColor: colors?.white,
+                headerTitleStyle: {
+                  fontWeight: 'bold', 
+                } 
+              }}/>
+              <Stack.Screen name="NotificationScreen" component={LocalNotification} 
+              options={{
+                headerBackTitleVisible: false,  title: 'Notification', 
+                headerStyle: {
+                  backgroundColor: colors?.backgroundColor, 
+                },
+                headerTintColor: colors?.white,
+                headerTitleStyle: {
+                  fontWeight: 'bold', 
+                }
+              }}/>
+              <Stack.Screen name="AppTheme" component={AppTheme} options={{
+                headerBackTitleVisible: false,
+                title: 'App Theme',
+                headerStyle: {
+                  backgroundColor: colors.backgroundColor, 
+                },
+                headerTintColor: colors?.white,
+                headerTitleStyle: {
+                  fontWeight: 'bold', 
+                },
+              }}/>
               <Stack.Screen name="HydrationTips" component={HydrationTips} options={{
-          headerBackTitleVisible: false,
-          title: 'Hydration Tips',
-          headerStyle: {
-            backgroundColor: Colors.backgroundColor, 
-          },
-          headerTintColor: Colors.white,
-          headerTitleStyle: {
-            fontWeight: 'bold', 
-          },
-        }}/>
+                headerBackTitleVisible: false,
+                title: 'Hydration Tips',
+                headerStyle: {
+                  backgroundColor: colors.backgroundColor, 
+                },
+                headerTintColor: colors?.white,
+                headerTitleStyle: {
+                  fontWeight: 'bold', 
+                },
+              }}/>
             
             </Stack.Navigator>
           )}
@@ -144,16 +185,16 @@ export default function NavigationDashboard() {
           container: {
             borderRadius: 12,
             height: '42%',
-            backgroundColor:Colors.primaryColor
+            backgroundColor:colors?.bottomSheet
           },
           wrapper: {
-            shadowColor: Colors.darkColor,
+            shadowColor: colors?.darkColor,
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.2,
             shadowRadius: 3,
           },
           draggableIcon: {
-            backgroundColor: Colors.white
+            backgroundColor: isDarkTheme == 1 ? colors?.thirdText : colors?.blackNwhite,
           },
 
         }}

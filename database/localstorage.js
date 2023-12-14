@@ -86,6 +86,20 @@ export async function fetchUserInfo() {
     }
 }
 
+export async function fetchDarkThemeSetting() {
+    try {
+        const isDarkTheme = await AsyncStorage.getItem('isDarkTheme');
+
+        if (isDarkTheme == "true") {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        return null;
+    }
+}
+
 
 export async function _updateUserInfo(user) {
     try {
@@ -94,6 +108,15 @@ export async function _updateUserInfo(user) {
         console.error('Error storing data for user info: ' + error);
     }
 }
+
+export async function _updateDarkThemeSetting(isDarkTheme) {
+    try {
+        await AsyncStorage.setItem('isDarkTheme', JSON.stringify(isDarkTheme));
+    } catch (error) {
+        console.error('Error storing data for dark theme settings: ' + error);
+    }
+}
+
 
 export async function fetchWaterLogHistory() {
     try {

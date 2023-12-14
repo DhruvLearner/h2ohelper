@@ -2,11 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Button, StyleSheet, Switch } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateDailyGoal, updateWaterUnit } from '../../../../Redux/slice/water_amount_slice';
-import Colors from '../../../../colors';
+import Colors, {lightTheme , darkTheme} from '../../../../colors';
 
 export default function EditWaterGoalSheet(props) {
   const selectedUnit = useSelector((state) => state.dailyWaterGoal.waterMainUnit);
-  
+  const [colors, setColors] = useState(null);
+  const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+    useEffect(() => {
+        if (isDarkTheme == true) {
+            setColors(darkTheme)
+        }else{
+            setColors(lightTheme)
+        }
+    }, [isDarkTheme]);
   const [number, setNumber] = useState('');
   const [error, setError] = useState('');
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
@@ -44,8 +52,8 @@ export default function EditWaterGoalSheet(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Edit Your Daily Goal</Text>
-      <Text style={styles.staticText}>
+      <Text style={[styles.headerText,{color: colors?.secondaryText}]}>Edit Your Daily Goal</Text>
+      <Text style={[styles.staticText, { color: colors?.thirdText}]}>
         Amount (ml):
       </Text>
       <View style={styles.inputContainer}>
@@ -53,7 +61,7 @@ export default function EditWaterGoalSheet(props) {
         <TextInput
           style={[
             styles.input,
-            {color:Colors.secondaryText },
+            {color:colors?.secondaryText },
             error && { borderColor: 'red' }
           ]}
           onChangeText={handleNumberChange}
@@ -67,28 +75,28 @@ export default function EditWaterGoalSheet(props) {
         <View style={styles.switchMainCon}>
           <TouchableOpacity
             style={[
-              styles.mlBtnStyle,
-              selectedUnit === 'ml' && styles.selectedUnitButton,
+              styles.mlBtnStyle,{backgroundColor: colors?.genderBtn},
+              selectedUnit === 'ml' && {backgroundColor: colors?.secondaryText},
             ]}
             onPress={() => handleUnitChange('ml')}
           >
-            <Text style={selectedUnit == 'ml' ? styles.selectedBtnText : styles.mlBtnText}>ml</Text>
+            <Text style={selectedUnit == 'ml' ? (styles.selectedBtnText,{color: colors?.white}) : (styles.mlBtnText,{color : colors?.lightGray})}>ml</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
-              styles.literBtnStyle,
-              selectedUnit === 'liter' && styles.selectedUnitButton ,
+              styles.literBtnStyle, {backgroundColor: colors?.genderBtn},
+              selectedUnit === 'liter' && {backgroundColor: colors?.secondaryText} ,
             ]}
             onPress={() => handleUnitChange('liter')}
           >
-            <Text style={  selectedUnit == 'liter' ? styles.selectedBtnText : styles.literBtnText}>liter</Text>
+            <Text style={  selectedUnit == 'liter' ? (styles.selectedBtnText,{color: colors?.white}) : (styles.literBtnText,{color : colors?.lightGray})}>liter</Text>
           </TouchableOpacity>
         </View>
         {error && <Text></Text>} 
         </View>
       </View>
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Submit</Text>
+      <TouchableOpacity style={[styles.submitButton,{backgroundColor: colors?.backgroundColor,color: colors?.lightColor}]} onPress={handleSubmit}>
+        <Text style={[styles.buttonText,{color: colors?.lightColor}]}>Submit</Text>
       </TouchableOpacity>
     </View>
   );
@@ -99,14 +107,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.primaryColor
+    alignItems: 'center'
   },
   headerText: {
     fontSize: 20,
     fontFamily: '',
     fontWeight: '600',
-    color: Colors.secondaryText,
     marginBottom: 20,
   },
   inputContainer: {
@@ -131,21 +137,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mlBtnStyle: {
-    backgroundColor: Colors.primaryColor,
     padding: 8,
     borderRadius: 4,
     marginRight: 10,
   },
   literBtnStyle: {
-    backgroundColor: Colors.primaryColor,
     padding: 8,
     borderRadius: 4,
   },
   selectedUnitButton: {
-    backgroundColor: Colors.secondaryText,
   },
   selectedBtnText: {
-    color: Colors.primaryText,
     fontFamily: '',
     fontSize: 16,
   },
@@ -157,12 +159,11 @@ const styles = StyleSheet.create({
   mlBtnText: {
     fontFamily: '',
     fontSize: 16,
-    color : Colors.secondaryText
+    
   },
   literBtnText: {
     fontFamily: '',
     fontSize: 16,
-    color : Colors.secondaryText
   },
   input: {
     width: 150,
@@ -174,14 +175,12 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   submitButton: {
-    backgroundColor: Colors.secondaryColor,
+    
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 40,
-    color: Colors.lightColor,
   },
-  buttonText: {
-    color: Colors.primaryText,
+  buttonText: {    
     fontSize: 18,
     marginHorizontal: 55,
     fontFamily: '',
@@ -191,7 +190,6 @@ const styles = StyleSheet.create({
   staticText: {
     fontSize: 16,
     fontFamily: '',
-    color: Colors.thirdText,
     marginRight: 10,
   },
 });

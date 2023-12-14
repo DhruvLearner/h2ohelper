@@ -5,24 +5,24 @@ const style = StyleSheet.create({
     maincontainer:{
         paddingHorizontal:10,
         paddingVertical:20,
+        flex: 1
     },
     container:{
         flexDirection : 'row',
         justifyContent:'space-between',
         alignItems:'center',
         paddingVertical:20,
-        paddingHorizontal:10,
-    
+        paddingHorizontal:10
     },
     headingStyle:{
         fontWeight:'bold',
-        fontSize:18,
+        fontSize:18
     },
     textInputView:{
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent:'center',
-        alignSelf:'flex-start',
+        alignSelf:'flex-start'
     },
     input: {
         width: 80,
@@ -30,7 +30,7 @@ const style = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         marginVertical:10,
-        padding: 10,
+        padding: 10
       },
       errorText:{
         color:'red', 
@@ -51,8 +51,8 @@ const style = StyleSheet.create({
       saveText:{
         color:Colors.lightColor,
         fontSize:16,
-        fontWeight:'bold'
-        
+        fontWeight:'bold',
+        color: Colors.thirdText
       }
 })
 

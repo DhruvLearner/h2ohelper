@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState ,useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { useSelector } from 'react-redux';
 import LottieView from 'lottie-react-native';
-import Colors from '../../../../colors';
+import Colors,{ darkTheme, lightTheme } from '../../../../colors';
 
 const getMotivationalSentence = (percentage) => {
     if (percentage === 0) {
@@ -23,7 +23,15 @@ const getMotivationalSentence = (percentage) => {
   };
   
 export default function WaterScreenContent() {
- 
+  const [colors, setColors] = useState(null);
+  const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+    useEffect(() => {
+        if (isDarkTheme == true) {
+            setColors(darkTheme)
+        }else{
+            setColors(lightTheme)
+        }
+    }, [isDarkTheme]);
     const confettiRef = useRef();
     const dailyWaterIntake = useSelector((state) => state.dailyWaterGoal.dailyWaterIntake);
     const dailyWaterPer = useSelector((state) => state.dailyWaterGoal.drunkWaterPer);
@@ -31,14 +39,16 @@ export default function WaterScreenContent() {
     const motivationalSentence = getMotivationalSentence(dailyWaterPer);
     const dailyWaterMainUnit = useSelector((state) => state.dailyWaterGoal.waterMainUnit);
   
-    const tabBgColor = Colors.backgroundColor
+    const tabBgColor = isDarkTheme == 1 ? colors?.tipsBg : "#3d5875";
+    const tintBgColor = colors?.tintBgColor
+
     
     function triggerConfetti() {
       confettiRef.current?.play(0)
     }
   
     return (
-      <View style={styles.container}>
+      <View style={[styles.container,{backgroundColor: isDarkTheme == false ? colors?.primaryColor : colors?.darkGray}]}>
         {dailyWaterPer >= 100 ? triggerConfetti() : null}
         <LottieView
           ref={confettiRef}
@@ -48,25 +58,24 @@ export default function WaterScreenContent() {
           style={styles.lottie}
           resizeMode='cover'
         />
-        <Text style={styles.screenHeader}>{motivationalSentence}</Text>
+        <Text style={[styles.screenHeader,{color: colors?.whiteNblack}]}>{motivationalSentence}</Text>
         <View style={styles.visualContainer}>
           <AnimatedCircularProgress
             size={120}
             width={15}
             fill={Number(dailyWaterPer)}
-            tintColor= "black"
-            onAnimationComplete={() => console.log()}
+            tintColor={tintBgColor}
             backgroundColor={tabBgColor}
             lineCap='round'
           >
             {(fill) => (
-              <Text style={styles.progressText}>
+              <Text style={[styles.progressText,{color: colors?.whiteNblack}]}>
                 {dailyWaterPer?.toString()}% 
               </Text>
             )}
           </AnimatedCircularProgress> 
           <View style={styles}>
-            <Text style={styles.waterProgressText}>
+            <Text style={[styles.waterProgressText,{color: colors?.whiteNblack,}]}>
               {_convertedWater(dailyWaterIntake,dailyWaterMainUnit)}{" "}
               {dailyWaterMainUnit} of {_convertedWater(dailyWaterGoal,dailyWaterMainUnit)}{" "} 
               {dailyWaterMainUnit}
