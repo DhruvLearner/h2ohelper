@@ -3,7 +3,7 @@ import React from 'react'
 import style from './styles'
 import * as Notifications from 'expo-notifications';
 import { useEffect, useState } from 'react';
-import Colors from '../colors';
+import Colors, {lightTheme, darkTheme} from '../colors';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setNotificationPreference, setNotificationTime } from '../Redux/slice/setting_slice';
@@ -16,6 +16,15 @@ export default function LocalNotification() {
     const [error, setError] = useState('');
     const [number, setNumber] = useState('');
 
+    const [colors, setColors] = useState(null);
+    const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+    useEffect(() => {
+        if (isDarkTheme == true) {
+            setColors(darkTheme)
+        }else{
+            setColors(lightTheme)
+        }
+    }, [isDarkTheme]);
 
     const defaultNotificationTime = useSelector((state)=>state.setting.notificationTime)
    
@@ -90,21 +99,21 @@ export default function LocalNotification() {
     }, []);
 
     return (
-        <View style={style.maincontainer}>
+        <View style={[style.maincontainer,{backgroundColor: colors?.secondaryColor}]}>
             <Text style={style.headingStyle}>Drink Water Notification : </Text>
-            <View style={style.container}>
+            <View style={[style.container,{color: colors?.thirdText}]}>
                 <Switch value={notificationPreference} onChange={changeNotificationPreference}
                     trackColor={{ false: '#daecec', true: Colors.primaryColor }}
                     ios_backgroundColor="#daecec" />
-                <Text> Set Daily Reminder </Text>
+                <Text style={{ color: colors?.thirdText }}> Set Daily Reminder </Text>
             </View>
             {notificationPreference &&
             <View style={style.customNotificationView}>
-                <Text>In an every </Text>
+                <Text style={{ color: colors?.thirdText }}>In an every </Text>
                 <View style={style.textInputView}>
                     <TextInput
                         style={[
-                            style.input,
+                            style.input, { color: colors?.thirdText},
                             error && { borderColor: 'red' }
                         ]}
                         onChangeText={handleNumberChange}
@@ -114,7 +123,7 @@ export default function LocalNotification() {
                     />
                     {error && <Text style={style.errorText}>{error}</Text>}
                 </View>
-                <Text>minutes </Text>
+                <Text style={{ color: Colors.thirdText }}>minutes </Text>
                 <TouchableOpacity
                 style={style.saveBtn}
                     onPress={() => handleSaveBtn()}

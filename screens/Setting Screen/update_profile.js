@@ -1,8 +1,9 @@
 import { View, Text, TextInput, Image } from 'react-native'
-import React from 'react'
+import React , {useEffect}from 'react'
 import { StyleSheet } from 'react-native';
 import { useState } from 'react';
 import Colors from '../../colors';
+import { darkTheme, lightTheme } from  '../../colors';
 import { TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -10,6 +11,15 @@ import { updateUserInfo } from '../../Redux/slice/setting_slice';
 
 
 const EditProfile = () => {
+  const [colors, setColors] = useState(null);
+  const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+    useEffect(() => {
+        if (isDarkTheme == true) {
+            setColors(darkTheme)
+        }else{
+            setColors(lightTheme)
+        }
+    }, [isDarkTheme]);
   const dUser = useSelector((state)=>state.setting.user);
   const [fullName, setFullName] = useState(dUser ? dUser.name : '');
   const [weight, setWeight] = useState(dUser ? dUser.weight : '');
@@ -33,7 +43,7 @@ const EditProfile = () => {
   };
   
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor: colors?.secondaryColor}]}>
       <View style={styles.rowContainer}>
         <Text style={styles.label}>Full Name *</Text>
         <TextInput
@@ -47,21 +57,21 @@ const EditProfile = () => {
       <View style={styles.switchMainCon}>
         <TouchableOpacity
           style={[
-            styles.genderBtnStyle,
+            styles.genderBtnStyle,{backgroundColor: colors?.genderBtn},
             selectedGender === 'Male' && styles.selectedUnitButton,
           ]}
           onPress={() => handleGenderChange('Male')}
         >
-          <Text style={[selectedGender == 'Male' ? styles.selectedBtnText : styles.btnTextStyle]}>Male</Text>
+          <Text style={[selectedGender == 'Male' ? (styles.selectedBtnText,{color: isDarkTheme == 1 ? colors?.white : colors?.tipsBg}) : styles.selectedBtnText,(styles.btnTextStyle)]}>Male</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
-            styles.genderBtnStyle,
+            styles.genderBtnStyle,{backgroundColor: colors?.genderBtn},
             selectedGender === 'Female' && styles.selectedUnitButton,
           ]}
           onPress={() => handleGenderChange('Female')}
         >
-          <Text style={[selectedGender == 'Female' ? styles.selectedBtnText : styles.btnTextStyle]}>Female</Text>
+          <Text style={[selectedGender == 'Female' ? (styles.selectedBtnText,{color: isDarkTheme == 1 ? colors?.white : colors?.tipsBg}) : styles.selectedBtnText,(styles.btnTextStyle)]}>Female</Text>
         </TouchableOpacity>
       </View>
 
@@ -89,8 +99,8 @@ const EditProfile = () => {
         </View>
       </View>
       <TouchableOpacity onPress={handleSaveClick}>
-        <View style={styles.SaveBtn} >
-          <Text style={styles.saveTextStyle}>Save</Text>
+        <View style={{backgroundColor: colors?.backgroundColor}}>
+          <Text style={[styles.saveTextStyle,{color: colors?.lightColor}]}>Save</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -102,7 +112,6 @@ export default EditProfile;
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: Colors.lightColor,
     height: '100%'
   },
 
@@ -132,26 +141,17 @@ const styles = StyleSheet.create({
   },
   btnTextStyle: {
     textAlign: 'center',
-    fontWeight: 'bold',
-    color: 'gray'
+    fontWeight: 'bold'
   },
   genderBtnStyle: {
-    backgroundColor: Colors.lightColor,
     width: '50%',
     borderRadius: 4,
     paddingVertical: 12,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
   selectedUnitButton: {
-    backgroundColor: Colors.primaryColor,
-  },
-  selectedBtnText: {
-    color: Colors.lightColor,
-    fontFamily: '',
-    fontSize: 16,
-    textAlign: 'center'
-    ,
-    fontWeight: 'bold'
+    backgroundColor: Colors.lightColor,
   },
   heightView: {
     display: 'flex',
@@ -166,11 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 20,
   },
-  SaveBtn: {
-    backgroundColor: Colors.secondaryColor
-  },
   saveTextStyle: {
-    color: Colors.lightColor,
     fontSize: 22,
     fontWeight: 'bold',
     margin: 10,

@@ -1,8 +1,5 @@
 import { StyleSheet } from "react-native";
-import Colors from "../../../colors";
-
-export 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     sheetContainer: {
       display: 'flex',
       flexDirection: 'row',
@@ -15,7 +12,7 @@ const styles = StyleSheet.create({
       alignContent: 'center',
       paddingHorizontal: 10,
       height:800,
-      backgroundColor:Colors.primaryColor
+      
      
     }, 
     addWater: {
@@ -24,17 +21,10 @@ const styles = StyleSheet.create({
       marginRight: 5,
       minWidth: 80,
       borderRadius: 10,
-      //backgroundColor: "#efefef", 
-      borderWidth: 0,
-      
-    },
-    selectedValue: {
-      backgroundColor: Colors.secondaryColor,
-      borderColor: Colors.darkColor, 
-      color:Colors.darkColor
+      borderWidth: 1
     },
     mlText: {
-      color: Colors.darkColor, 
+      
       textAlign: 'center',
       fontFamily:'',
       
@@ -45,26 +35,25 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     selectedText: {
-      color: Colors.darkColor, 
+      
     },
     selectedValueText: {
       margin: 10,
       textAlign: 'center',
       fontWeight: 'bold',
       fontFamily:'',
-      fontSize:18,
-      color:Colors.secondaryText
+      fontSize:18
       
     },
     submitButton: {
-      backgroundColor: Colors.secondaryColor, 
+      
       borderRadius: 8,
       padding: 10,
       alignSelf: 'center', 
   },
     
     buttonText: {
-      color: Colors.primaryText,
+      
       fontSize: 18,
       marginHorizontal:35,
       fontFamily:'',
@@ -75,8 +64,5 @@ const styles = StyleSheet.create({
     },
     disabledSubmitButton: {
       backgroundColor: 'gray', 
-    },
-    disabledButtonText: {
-      color: Colors.lightColor, 
-    },
+    }
   });

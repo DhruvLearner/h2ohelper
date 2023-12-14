@@ -1,19 +1,27 @@
 import { ScrollView, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { styles } from './style'
 import WaterScreen from './components/waterScreen/waterScreen'
 import EditDailyGoals from './components/dailyGoals/editDailyGoals'
 import { useSelector, useDispatch } from 'react-redux';
-import RetrieveData, { fetchUserInfo } from '../../database/localstorage'
+import RetrieveData, { fetchDarkThemeSetting, fetchUserInfo } from '../../database/localstorage'
 import { updateWaterData, getHistoryInsightArray, updateHistoryInsight } from '../../Redux/slice/water_amount_slice'
 import HistoryWaterLog from './components/historyWaterLog/history_water_log'
 import { fetchNotificationData } from '../../database/localstorage'
-import { setNotificationTime, updateUserInfo } from '../../Redux/slice/setting_slice'
+import { setNotificationTime, updateDarkThemeSetting, updateUserInfo } from '../../Redux/slice/setting_slice'
 import HistoryInsight from './components/Hydration History Insight/history_insight'
-
+import { darkTheme, lightTheme } from  '../../colors';
 
 export default function HomeScreen() {
-  
+  const [colors, setColors] = useState(null);
+  const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+    useEffect(() => {
+        if (isDarkTheme == true) {
+            setColors(darkTheme)
+        }else{
+            setColors(lightTheme)
+        }
+    }, [isDarkTheme]);
   const dailyWaterGoal = useSelector((state) => state.dailyWaterGoal.dailyWaterGoal);
   const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
   const dailyWaterIntake = useSelector((state) => state.dailyWaterGoal.dailyWaterIntake);
@@ -31,6 +39,10 @@ export default function HomeScreen() {
       const historyInsightObj = await getHistoryInsightArray();
       dispatch(updateHistoryInsight(historyInsightObj));
 
+      const isDarkTheme = await fetchDarkThemeSetting();
+      
+      dispatch(updateDarkThemeSetting(isDarkTheme));
+
     };
     fetchData();
   }, [dailyWaterIntake]);
@@ -40,7 +52,7 @@ export default function HomeScreen() {
   });
 
   return (
-      <View style={styles.container}>
+      <View style={[styles.container,{backgroundColor:colors?.homeScreenenBg}]}>
         <ScrollView style={{ flex: 1 }}>
             <WaterScreen></WaterScreen>
             <EditDailyGoals dailyGoal={dailyWaterGoal} dailyWaterUnit={dailyWaterUnit} dailyWaterMainUnit={dailyWaterMainUnit}></EditDailyGoals>

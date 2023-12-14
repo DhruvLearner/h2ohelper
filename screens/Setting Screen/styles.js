@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',
-        backgroundColor:Colors.backgroundColor,
        height:'100%',
     },
     
@@ -21,12 +20,10 @@ export const styles = StyleSheet.create({
     },
     nameStyle: {
         fontSize: 26,
-        fontWeight: 'bold',
-        color:Colors.thirdText,
+        fontWeight: 'bold'
     },
     genderTextStyle:{
         fontSize:16,
-        color:Colors.white,
         marginTop:10,
     },
     image: {
@@ -36,8 +33,7 @@ export const styles = StyleSheet.create({
     },
     optionTextStyle: {
         fontSize: 16,
-        fontWeight: '600',
-        color: Colors.thirdText
+        fontWeight: '600'
         
     },
     option: {
@@ -50,11 +46,9 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: Colors.secondaryColor,
-        shadowColor: Colors.darkColor,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
-        shadowRadius: 3,
+        shadowRadius: 3
     },
     versionStyle:{
         fontSize:14,

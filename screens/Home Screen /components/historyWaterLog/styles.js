@@ -27,17 +27,15 @@ export const styles = StyleSheet.create({
     headerText:{
         fontSize:16,
         fontFamily:'',
-        color: Colors.primaryText,
         fontWeight: "bold"
     },
     editText: {
         fontSize: 14, 
         fontFamily:'',
-        color : Colors.primaryText
       },
       item_container:{
         borderRadius:8,
-        backgroundColor: Colors.primaryColor,
+        
         marginHorizontal: 6,
         paddingBottom:0,
       },
@@ -55,7 +53,6 @@ export const styles = StyleSheet.create({
         right: 4,
         backgroundColor: 'red',
         borderRadius: 50,
-       
         padding: 1,
         zIndex: 1,
       },

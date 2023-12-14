@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     mainContainer: {
         display: 'flex',
         flexDirection: 'column',
-        margin: 10,
+        margin: 10
     },
     headerView: {
         display: 'flex',
@@ -18,27 +18,23 @@ export const styles = StyleSheet.create({
     headerText: {
         fontSize: 16,
         fontFamily: '',
-        color: Colors.primaryText,
         fontWeight: "bold"
     },
     editText: {
-        color: Colors.primaryText,
         fontSize: 14,
         fontFamily: '',
 
     },
     container: {
         minHeight: 100,
-        // backgroundColor: Colors.secondaryColor,
         borderRadius: 10,
         paddingHorizontal: 15,
-        paddingVertical: 10,
-        backgroundColor: Colors.secondaryColor,
+        paddingVertical: 10
     },
     goalText: {
         fontSize: 30,
         fontFamily: '',
-        color: Colors.lightColor
+        
     },
     setGoalMsgText: {
         fontSize: 24,

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { _updateNotificationPreference, _updateNotificationTime, _updateUserInfo } from "../../database/localstorage";
+import { _updateNotificationPreference, _updateNotificationTime, _updateUserInfo, _updateDarkThemeSetting } from "../../database/localstorage";
 
 const initialState = {
     notificationPreference : false,
     notificationTime : 1,
+    darkTheme: false,
     user: {
         name : '',
         gender : 'Male',
@@ -28,10 +29,14 @@ const settingSlice = createSlice({
         updateUserInfo:(state, action)=>{
             state.user = action.payload
             _updateUserInfo(state.user);
+        },
+        updateDarkThemeSetting:(state,action)=>{
+            state.darkTheme = action.payload
+            _updateDarkThemeSetting(state.darkTheme);
         }
 
     }
 });
 
-export const {setNotificationTime, setNotificationPreference, updateUserInfo } = settingSlice.actions;
+export const {setNotificationTime, setNotificationPreference, updateUserInfo, updateDarkThemeSetting } = settingSlice.actions;
 export default settingSlice.reducer;

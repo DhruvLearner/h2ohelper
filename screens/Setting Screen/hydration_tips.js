@@ -1,9 +1,20 @@
 import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 import { StyleSheet } from "react-native";
-import Colors from '../../colors'
+import Colors, {lightTheme, darkTheme} from '../../colors';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function HydrationTips() {
+  const [colors, setColors] = useState(null);
+  const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+  useEffect(() => {
+      if (isDarkTheme == true) {
+          setColors(darkTheme)
+      }else{
+          setColors(lightTheme)
+      }
+  }, [isDarkTheme]);
   const data = [
     { id: '1', title: 'Drink Water First Thing in the Morning', tips: 'Start your day by drinking a glass of water. It helps kickstart your metabolism and rehydrate your body after a night\'s sleep.' },
     { id: '2', title: 'Carry a Reusable Water Bottle', tips: 'Keep a water bottle with you throughout the day. Having water readily available makes it easier to stay hydrated.' },
@@ -23,14 +34,14 @@ export default function HydrationTips() {
   ];
 
   const renderItem = ({ item }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.tips}>{item.tips}</Text>
+    <View style={[styles.item,{backgroundColor: colors?.tipsBg, border: colors?.darkColor}]}>
+      <Text style={[styles.title,{color:colors?.thirdText,}]}>{item.title}</Text>
+      <Text style={[styles.tips,{color:colors?.thirdText}]}>{item.tips}</Text>
     </View>
   );
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:colors?.secondaryColor}]}>
 
       <FlatList
         data={data}
@@ -46,18 +57,15 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 10,
-    paddingBottom:80,
-    backgroundColor:Colors.secondaryColor
+    paddingBottom:80
   },
   item: {
     paddingHorizontal: 10,
     paddingVertical: 10,
     marginBottom: 10,
     marginHorizontal: 20,
-    backgroundColor: Colors.primaryColor,
     borderRadius: 10,
     borderWidth: 0.1,
-    shadowColor: Colors.darkColor,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
@@ -69,7 +77,6 @@ export const styles = StyleSheet.create({
   title:{
     fontSize:16, 
     fontWeight:'700',
-    color:Colors.thirdText,
     paddingBottom:5,
   }
 

@@ -1,15 +1,23 @@
 import { View, Text, TouchableOpacity, Button } from 'react-native'
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { styles } from './styles'
 import { useSelector, useDispatch } from 'react-redux';
 import { addWater } from '../../../Redux/slice/water_amount_slice';
-
+import { lightTheme, darkTheme } from '../../../colors';
 const mlValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200];
 
 export default function WaterLogSheetContainer(props) {
   const dailyWaterUnit = useSelector((state) => state.dailyWaterGoal.waterUnit);
   const dispatch = useDispatch();
-
+  const [colors, setColors] = useState(null);
+  const isDarkTheme = useSelector((state) => state.setting.darkTheme); 
+  useEffect(() => {
+    if (isDarkTheme == true) {
+      setColors(darkTheme)
+    }else{
+      setColors(lightTheme)
+    }
+  }, [isDarkTheme]);
   const [selectedValue, setSelectedValue] = useState(null);
 
   
@@ -28,21 +36,21 @@ export default function WaterLogSheetContainer(props) {
   const isSubmitDisabled = selectedValue === null;
 
   return (
-    <View style={styles.sheetContainer}>
+    <View style={[styles.sheetContainer,{backgroundColor:colors?.bottomsheet}]}>
       <View style={styles.selectedValueContainer}>
-        <Text style={styles.selectedValueText}>
+        <Text style={[styles.selectedValueText,{color:colors?.secondaryText}]}>
           {selectedValue ? `Selected Value: ${selectedValue}${dailyWaterUnit}` : 'Select Value'}
         </Text>
       </View>
       {mlValues.map((mlValue, index) => (
         <TouchableOpacity key={index} onPress={() => _waterLog(mlValue)}>
           <View style={[
-            styles.addWater,
-            selectedValue === mlValue && styles.selectedValue
+            styles.addWater, { color: "black" },
+            selectedValue === mlValue && ({ backgroundColor: isDarkTheme == 1 ? colors?.secondaryColor : "#e1e1e1" })
           ]}>
             <Text style={[
-              styles.mlText,
-              selectedValue === mlValue && styles.selectedText
+              styles.mlText,{color: colors?.darkColor},
+              selectedValue === mlValue && { color: isDarkTheme == 1 ? colors?.darkColor : colors?.blackNwhite }
             ]}>
               {mlValue}{dailyWaterUnit}
             </Text>
@@ -51,15 +59,15 @@ export default function WaterLogSheetContainer(props) {
       ))}
       <TouchableOpacity
         style={[
-          styles.submitButton,
+          styles.submitButton,{backgroundColor: isDarkTheme == 1 ? colors?.secondaryColor : colors?.backgroundColor },
           isSubmitDisabled && styles.disabledSubmitButton
         ]}
         onPress={_addWater}
         disabled={isSubmitDisabled}
       >
         <Text style={[
-          styles.buttonText,
-          isSubmitDisabled && styles.disabledButtonText
+          styles.buttonText, ,{color: colors?.lightColor},
+          isSubmitDisabled && (styles.disabledButtonText,{color: colors?.lightColor})
         ]}>Submit</Text>
       </TouchableOpacity>
     </View>

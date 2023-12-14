@@ -20,8 +20,8 @@ export default function HistoryInsight() {
     var waterAmounts = useSelector((state) => state.dailyWaterGoal.waterloggedAmounts);
     var dates = useSelector((state) => state.dailyWaterGoal.waterloggedDates);
 
-    // waterAmounts =  [800, 200]
-    // dates = [ "11/27/2023", "11/26/2023"]
+    waterAmounts =  [800, 200]
+    dates = [ "11/27/2023", "11/26/2023"]
     
     const data = {
         labels: dates,
@@ -50,7 +50,6 @@ export default function HistoryInsight() {
         barPercentage: 1.0,
         useShadowColorFromDataset: false // optional
       };
-      console.log(data,'data')
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>Hydration History Insight</Text>
